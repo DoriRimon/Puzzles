@@ -1,0 +1,19 @@
+{
+  "name": "webathon",
+  "version": "1.0.0",
+  "description": "New highly advanced Webkit For Chess!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DoriRimon/WebAthon.git"
+  },
+  "author": "Doraz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DoriRimon/WebAthon/issues"
+  },
+  "homepage": "https://github.com/DoriRimon/WebAthon#readme"
+}
