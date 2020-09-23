@@ -1,15 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>An example .ioo game</title>
-  <link type="text/css" rel="stylesheet" href="/game.bundle.css">
+  <title>Webkit</title>
+  <link type="text/css" rel="stylesheet" href="/src/client/css/styles.css">
 </head>
 <body>
-  <canvas id="game-canvas"></canvas>
-  <script async src="/game.bundle.js"></script>
-  <div id="play-menu" class="hidden">
-    <input type="text" id="username-input" placeholder="Username" />
-    <button id="play-button">PLAY</button>
-  </div>
+  <textarea id="text" class="CodeMirror"></textarea>
+  <link rel="stylesheet" type="text/css" href="../../../node_modules/codemirror/lib/codemirror.css">
+  <link rel="stylesheet" type="text/css" href="../../../node_modules/codemirror/theme/ambiance.css">
+  <link rel="stylesheet" type="text/css" href="../../../node_modules/codemirror/theme/solarized.css">
+  <script type="text/javascript" src="../../../node_modules/codemirror/lib/codemirror.js"></script>
+  <script type="text/javascript" src="../../../node_modules/codemirror/mode/javascript/javascript.js"></script>
+  <script type="text/javascript">
+    var config, editor;
+
+    config = {
+        lineNumbers: true,
+        mode: "javascript",
+        theme: "ambiance",
+        indentWithTabs: true
+    };
+
+    editor = CodeMirror.fromTextArea(document.getElementById("text"), config);
+
+    /*function selectTheme() {
+        editor.setOption("theme", "solarized dark");
+    }
+    setTimeout(selectTheme, 5000);*/
+</script>
 </body>
 </html>

@@ -1,0 +1,9 @@
+body {
+    background-color: darksalmon;
+}
+
+.CodeMirror {
+    width: 50%;
+    margin-left: 50%;
+    margin-top: 5;
+}
