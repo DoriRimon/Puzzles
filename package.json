@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/DoriRimon/WebAthon#readme",
   "dependencies": {
-    "codemirror": "^5.58.1"
+    "codemirror": "^5.58.1",
+    "express": "^4.17.1"
   }
 }
