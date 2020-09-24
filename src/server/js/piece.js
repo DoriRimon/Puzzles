@@ -3,7 +3,7 @@
 // TODO - En Passant
 
 class Piece {
-    constructor(pos, color) {
+    constructor(pos, color, id) {
         if (new.target == Piece) {
             throw new TypeError("Cannot construct abstract class");
         }
@@ -14,6 +14,8 @@ class Piece {
         this.color = color
         this.points;
         this.name;
+        this.id = id;
+        this.eaten;
     }
 
     canMove(board, sqaure) {
