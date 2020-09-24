@@ -1,16 +1,36 @@
 const express = require('express');
-const app = express();
+const socket = express();
 const port = 3000;
 const parser = require("jsdom");
+const fs = require('fs');
+var index_html = "";
 
-app.get('/', (req, res) => {
-  
-  res.send('Hello World!');
-})
+socket.use("/", express.static(__dirname));
 
-app.listen(port, () => {
-	console.log(`Example app listening at http://localhost:${port}`);
-})
+socket.get('/', (req, res) => {
+	res.send(index_html)
+});
+	
+socket.listen(port, () => {
+	console.log(`Webkit listening at http://localhost:${port}`);
+});
+
+fs.readFile("src/client/html/index.html", (err, content) => {
+	if (err) {
+		console.log("error when reading data.json:\n" + err);
+		process.exit(1);
+	}
+	else {
+		try {
+			index_html = AddBots(content, ["bad dude man 1", "bad dude another man 2"]);
+		}
+		catch (e) {
+			console.log("error when parsing data.json:\n" + e);
+			process.exit(1);
+		}
+	}
+});
+
 
 function AddBots(html, bots) {
 	const dom = new parser.JSDOM(html);
@@ -39,29 +59,3 @@ function AddBots(html, bots) {
 	html = document.documentElement.innerHTML;
 	return html;
 }
-
-html = `<!DOCTYPE html>
-<html>
-<head>
-  <title>Webkit</title>
-  <link type="text/css" rel="stylesheet" href="/src/client/css/styles.css">
-</head>
-<body>
-  <textarea id="code" class="CodeMirror"></textarea>
-  <link rel="stylesheet" type="text/css" href="../../../node_modules/codemirror/lib/codemirror.css">
-  <link rel="stylesheet" type="text/css" href="../../../node_modules/codemirror/theme/ambiance.css">
-  <link rel="stylesheet" type="text/css" href="../../../node_modules/codemirror/theme/solarized.css">
-  <script type="text/javascript" src="../../../node_modules/codemirror/lib/codemirror.js"></script>
-  <script type="text/javascript" src="../../../node_modules/codemirror/mode/python/python.js"></script>
-  <script type="text/javascript" src="../../../node_modules/codemirror/addon/edit/closebrackets.js"></script>
-  <script type="text/javascript" src="../../../node_modules/codemirror/addon/edit/matchbrackets.js"></script>
-
-  <script type="text/javascript" src="../js/index.js"></script>
-  <button id="submit" onclick="Submit()">Submit!</button>
-
-  <table class="bots" id="tableBots"></table>
-
-</body>
-</html>`
-
-AddBots(html, ["bad dude man 1", "bad dude another man 2"]);
