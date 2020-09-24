@@ -5,28 +5,18 @@
   <link type="text/css" rel="stylesheet" href="/src/client/css/styles.css">
 </head>
 <body>
-  <textarea id="text" class="CodeMirror"></textarea>
+  <textarea id="code" class="CodeMirror"></textarea>
   <link rel="stylesheet" type="text/css" href="../../../node_modules/codemirror/lib/codemirror.css">
   <link rel="stylesheet" type="text/css" href="../../../node_modules/codemirror/theme/ambiance.css">
   <link rel="stylesheet" type="text/css" href="../../../node_modules/codemirror/theme/solarized.css">
   <script type="text/javascript" src="../../../node_modules/codemirror/lib/codemirror.js"></script>
-  <script type="text/javascript" src="../../../node_modules/codemirror/mode/javascript/javascript.js"></script>
+  <script type="text/javascript" src="../../../node_modules/codemirror/mode/python/python.js"></script>
+  <script type="text/javascript" src="../../../node_modules/codemirror/addon/edit/closebrackets.js"></script>
+  <script type="text/javascript" src="../../../node_modules/codemirror/addon/edit/matchbrackets.js"></script>
   <script type="text/javascript">
-    var config, editor;
-
-    config = {
-        lineNumbers: true,
-        mode: "javascript",
-        theme: "ambiance",
-        indentWithTabs: true
-    };
-
-    editor = CodeMirror.fromTextArea(document.getElementById("text"), config);
-
-    /*function selectTheme() {
-        editor.setOption("theme", "solarized dark");
-    }
-    setTimeout(selectTheme, 5000);*/
-</script>
+    
+  </script>
+  <script type="text/javascript" src="../js/index.js"></script>
+  <button id="submit" onclick="Submit()">Submit!</script>
 </body>
 </html>
