@@ -1,5 +1,6 @@
 // TODO - Boundaries to x2 & y2
 // TODO - Castling
+// TODO - En Passant
 
 class Piece {
     constructor(pos, color) {
@@ -17,11 +18,13 @@ class Piece {
 
     canMove(board, sqaure) {
         let [x2, y2] = [sqaure[0], square[1]];
-        if (x2 < 0 || x2 > board.length || y2 < 0 || y2 > board.length)
+        if (x2 < 0 || x2 > board.length || y2 < 0 || y2 > board.length) // Out of scope
             return false;
         else if (board[x2][y2] != null)
-            if (board[x2][y2].constructor.name == "King")
+            if (board[x2][y2].constructor.name == "King") // Trying to Eat a king
                 return false;
+        if (x2 == x1 && y2 == y1) // Trying not to move
+            return false;
         return true;
     }
 
@@ -30,7 +33,7 @@ class Piece {
     }
 }
 
-class Pawn extends Piece{
+class Pawn extends Piece {
     constructor(pos, color) {
         super(pos, color);
         this.name = "Pawn";
@@ -86,6 +89,14 @@ class Pawn extends Piece{
         return false;
     }
 
+    canThreat(board, square) {
+        let [x1, y1] = [pos[0], pos[1]];
+        let [x2, y2] = [sqaure[0], square[1]];
+        if (this.canMove(board, square) && y2 != y1)
+            return true;
+        return false;
+    }
+
     move(square) {
         super.move(square);
         this.numOfMoves++;
@@ -103,9 +114,52 @@ class Rook extends Piece {
     camMove(board, sqaure) {
         if (!super().canMove(board, sqaure))
             return false;
+        if (this.canMoveByCastle(board, square))
+            return true;
+        let [x1, y1] = [pos[0], pos[1]];
+        let [x2, y2] = [sqaure[0], square[1]];
         if (x2 == x1) {
-            
+            if (y2 < y1) {
+                while (y2 < y1) {
+                    if (board[x2][y2] != null)
+                        return false;
+                    y2++;
+                }
+            }
+            else {
+                while (y1 < y2) {
+                    if (board[x2][y2] != null)
+                        return false;
+                    y2--;
+                }
+            }
         }
+        else if (y2 == y1) {
+            if (x2 < x1) {
+                while (x2 < x1) {
+                    if (board[x2][y2] != null)
+                        return false;
+                    x2++;
+                }
+            }
+            else {
+                while (x1 < x2) {
+                    if (board[x2][y2] != null)
+                        return false;
+                    x2--;
+                }
+            }
+        }
+        return true;
+    }
+
+    canMoveByCastle(board, square) {
+
+    }
+
+    canThreat(board, square) {
+        if (this.canMove(board, square) && !this.canMoveByCastle(board, square))
+            return true;
         return false;
     }
 }
@@ -133,6 +187,10 @@ class Knight extends Piece {
         }
         return false
     }
+
+    canThreat(board, square) {
+        return this.canMove(board, square);
+    }
 }
 
 class Bishop extends Piece {
@@ -143,7 +201,33 @@ class Bishop extends Piece {
     }
 
     canMove(board, square) {
-        let [x, y] = [sqaure[0], sqaure[1]];
+        if (!super().canMove(board, sqaure))
+            return false;
+        let [x1, y1] = [pos[0], pos[1]];
+        let [x2, y2] = [sqaure[0], square[1]];
+        if (x2 < x1 && y2 < y1 && x1 - x2 == y1 - y2) {
+            while (x2 < x1 && y2 < y1) {
+                if (board[x2][y2] != null)
+                    return false
+                x2++;
+                y2++
+            }
+            return true
+        }
+        else if (x1 < x2 && y1 < y2 && x2 - x1 == y2 - y1) {
+            while (x1 < x2 && y1 < y2) {
+                if (board[x2][y2] != null)
+                    return false
+                x2--;
+                y2--;
+            }
+            return true
+        }
+        return false
+    }
+
+    canThreat(board, square) {
+        return this.canMove(board, square);
     }
 }
 
@@ -153,6 +237,21 @@ class Queen extends Piece {
         this.name = "Queen";
         this.points = 9;
     }
+
+    canMove(board, square) {
+        if (!super().canMove(board, square))
+            return false;
+        let [x1, y1] = [pos[0], pos[1]];
+        rook = new Rook([x1, y1], this.color);
+        bishop = new Book([x1, y1], this.color);
+        if (rook.canMove(board, square) && bishop.canMove(board, square))
+            return true;
+        return false;
+    }
+
+    canThreat(board, square) {
+        return this.canMove(board, square);
+    }
 }
 
 class King extends Piece {
@@ -160,5 +259,37 @@ class King extends Piece {
         super(pos, color);
         this.name = "King";
         this.numOfMoves = 0;
+    }
+
+    canMove(board, square, enemies) {
+        if (!super().canMove(board, square))
+            return false;
+        let [x1, y1] = [pos[0], pos[1]];
+        let [x2, y2] = [sqaure[0], square[1]];
+        for (enemy of enemies) {
+            if (enemy.canThreat(board, square))
+                return false
+        }
+        if (Math.abs(x2 - x1) == 1 && Math.abs(y2 - y1) == 1)
+            return true;
+         return false;
+    }
+
+    canThreat(board, square) {
+        if (this.canMove(board, square) && Math.abs(x2 - x1) == 1 && Math.abs(y2 - y1) == 1)
+            return true;
+        return false;
+    }
+
+    canCastleRight(board) {
+
+    }
+
+    canCastleLeft(board) {
+
+    }
+
+    canCastle(board) {
+        return this.canCastleLeft(board) && this.canCastleRight(board);
     }
 }
