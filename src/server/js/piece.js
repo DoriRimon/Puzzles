@@ -15,7 +15,7 @@ class Piece {
         this.points;
         this.name;
         this.id = id;
-        this.eaten;
+        this.isEaten;
     }
 
     canMove(board, sqaure) {

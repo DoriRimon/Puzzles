@@ -113,6 +113,24 @@ class Game {
         return pieces;
     }
 
+    getMyScore() { // Sum of scores of pieces I've eaten
+        sum = 0;
+        for (p of this.getOponnentsPieces()) {
+            if (p.isEaten)
+                sum += p.score;
+        }
+        return sum;
+    }
+
+    getOpponentScore() {
+        sum = 0;
+        for (p of this.getMyInstruments()) {
+            if (p.isEaten) 
+                sum += p.score;
+        }
+        return sum;
+    }
+
     run() {
         let turn = 0;
 
