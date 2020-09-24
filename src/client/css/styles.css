@@ -16,6 +16,8 @@ table, tr, td {
 .play {
     background-color: #6b6b6b;
 	float: none;
+	transition-duration: 0.5s;
+	cursor: pointer;
 }
 
 .play:hover {
@@ -31,12 +33,13 @@ table, tr, td {
 #submit {
 	margin-left: 100%;
 	align-self: center;
+	cursor: pointer;
 }
 
 #game {
     background-color: blue;
 	margin-top: 30px;
 	margin-left: 5px;
-	height: 70%;
+	width: 100%;
 	align-self: center;
 }
