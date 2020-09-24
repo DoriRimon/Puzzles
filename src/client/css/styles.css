@@ -6,3 +6,8 @@ body {
     width: 50%;
     margin-top: 5;
 }
+
+.bots {
+    width: 50%;
+    border-color: violet;
+}

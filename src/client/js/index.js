@@ -24,5 +24,4 @@ setTimeout(selectTheme, 5000);*/
 
 function Submit() {
     let code = editor.getValue();
-    console.log(editor.getValue())
 }
