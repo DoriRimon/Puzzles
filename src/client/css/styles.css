@@ -3,7 +3,8 @@ body {
 }
 
 .CodeMirror {
-    margin-top: 5;
+	margin-top: 5;
+	width: 100%;
 }
 
 table, tr, td {
@@ -41,6 +42,7 @@ table, tr, td {
 	margin-top: 30px;
 	margin-left: 5px;
 	width: 100%;
+	height: 650px;  /* Needs to be percentage (Also CodeMirror height) */
 	align-self: center;
 	display: block;
 }
