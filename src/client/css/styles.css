@@ -1,17 +1,42 @@
 body {
-    background-color: darksalmon;
+	background-color: darksalmon;
 }
 
 .CodeMirror {
-    width: 50%;
     margin-top: 5;
 }
 
-table, th, td {
-    width: 50%;
-    border: 1px dotted black;
+table, tr, td {
+    width: 100%;
+	border: 1px dotted black;
+	font-size: 17px;
+	text-align: center;
 }
 
 .play {
-    background-color: turquoise;
+    background-color: #6b6b6b;
+	float: none;
+}
+
+.play:hover {
+    background-color: teal;
+    color: white;
+}
+
+.column {
+    float: left;
+	width: 50%;
+}
+
+#submit {
+	margin-left: 100%;
+	align-self: center;
+}
+
+#game {
+    background-color: blue;
+	margin-top: 30px;
+	margin-left: 5px;
+	height: 70%;
+	align-self: center;
 }

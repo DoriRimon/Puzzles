@@ -46,10 +46,7 @@ function AddBots(bots) {
 		tr.appendChild(nametag);
 		tr.appendChild(playtag);
 
-		console.log(tr);
-
 		let table = document.getElementById("tableBots");
-		console.log(table)
 		table.appendChild(tr);
 	});
 }
