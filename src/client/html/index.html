@@ -1,32 +1,38 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Webkit</title>
-  <link type="text/css" rel="stylesheet" href="/src/client/css/styles.css">
-</head>
-<body>
-  <div class="column">
-    <textarea id="code" class="CodeMirror"></textarea>
+  <head>
+    <title>Webkit</title>
+    <link type="text/css" rel="stylesheet" href="/src/client/css/styles.css">
+
+    <!-- Editor Related -->
     <link rel="stylesheet" type="text/css" href="../../../node_modules/codemirror/lib/codemirror.css">
-    <link rel="stylesheet" type="text/css" href="../../../node_modules/codemirror/theme/ambiance.css">
-    <link rel="stylesheet" type="text/css" href="../../../node_modules/codemirror/theme/solarized.css">
     <script type="text/javascript" src="../../../node_modules/codemirror/lib/codemirror.js"></script>
-    <script type="text/javascript" src="../../../node_modules/codemirror/mode/python/python.js"></script>
     <script type="text/javascript" src="../../../node_modules/codemirror/addon/edit/closebrackets.js"></script>
     <script type="text/javascript" src="../../../node_modules/codemirror/addon/edit/matchbrackets.js"></script>
-  
-    <script type="text/javascript" src="../js/index.js"></script>
-    
-    <table class="bots" id="tableBots">
-      <tr>
-        <td><button id="submit" onclick="Submit()">Submit!</button></td>
-      </tr>
-    </table>
-  </div>
-  
-  <div class="column">
-    <canvas id="game" height="205"></canvas>
-  </div>
 
-</body>
+    <!-- Themes -->
+    <link rel="stylesheet" type="text/css" href="../../../node_modules/codemirror/theme/ambiance.css">
+    <link rel="stylesheet" type="text/css" href="../../../node_modules/codemirror/theme/solarized.css">
+
+    <!-- Languages Supported -->
+    <script type="text/javascript" src="../../../node_modules/codemirror/mode/python/python.js"></script>
+  </head>
+  <body>
+    <div class="column">
+      <!-- Create CodeMirror -->
+      <textarea id="code" class="CodeMirror"></textarea>
+      <script type="text/javascript" src="../js/index.js"></script>
+      
+      <!-- Bots Table -->
+      <table class="bots" id="tableBots">
+        <tr>
+          <td><button id="submit" onclick="Submit()">Submit!</button></td>
+        </tr>
+      </table>
+    </div>
+    
+    <div class="column">
+      <canvas id="game"></canvas>
+    </div>
+  </body>
 </html>

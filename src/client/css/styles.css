@@ -42,4 +42,5 @@ table, tr, td {
 	margin-left: 5px;
 	width: 100%;
 	align-self: center;
+	display: block;
 }
