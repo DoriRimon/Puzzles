@@ -1,3 +1,5 @@
+import {colors, pieces} from '../../shared/constants.js'
+
 class Player {
     constructor(color) {
         this.color = color;
@@ -5,26 +7,26 @@ class Player {
 
         let first = 7;
         let second = 6;
-        if (color == "black") {
+        if (color == colors.black) {
             first = 0;
             second = 1;
         }
         for (let i = 0; i < 8; i++) {
-            this.pieces[`pawn${i+1}`] = new Pawn([second, i], color);
+            this.pieces[`${pieces.pawn}${i+1}`] = new Pawn([second, i], color);
         }
-        this.pieces[`rook1`] = new Rook([first, 0], color);
-        this.pieces[`rook2`] = new Rook([first, 7], color);
-        this.pieces[`knight1`] = new Knight([first, 1], color);
-        this.pieces[`knight2`] = new Knight([first, 6], color);
-        this.pieces[`bishop1`] = new Bishop([first, 2], color);
-        this.pieces[`bishop2`] = new Bishop([first, 5], color);
-        this.pieces[`queen`] = new Queen([first, 3], color);
-        this.pieces[`king`] = new King([first, 4], color);
+        this.pieces[`${pieces.rook}1`] = new Rook([first, 0], color);
+        this.pieces[`${pieces.rook}2`] = new Rook([first, 7], color);
+        this.pieces[`${pieces.knight}1`] = new Knight([first, 1], color);
+        this.pieces[`${pieces.knight}2`] = new Knight([first, 6], color);
+        this.pieces[`${pieces.bishop}1`] = new Bishop([first, 2], color);
+        this.pieces[`${pieces.bishop}2`] = new Bishop([first, 5], color);
+        this.pieces[pieces.queen] = new Queen([first, 3], color);
+        this.pieces[pieces.king] = new King([first, 4], color);
     }
 
     canMove(opponent, piece, board, square) {
         let p = pieces[piece];
-        kingSquare = pieces["king"].square;
+        kingSquare = pieces[pieces.king].square;
         if (!p.canMove(board, square))
             return false;
         let flag = false; // Is king threatened
@@ -37,14 +39,14 @@ class Player {
             if (op.canThreat(board, kingSquare))
                 flag = true;
         }
-        if (flag && piece != "king")
+        if (flag && piece != pieces.king)
             return false;
         return true;
     }
 
     isWin(opponent, piece, board) {
         let [x1, y1] = [piece.square[0], piece.square[1]];
-        let king = opponent.pieces["king"];
+        let king = opponent.pieces[pieces.king];
         let threatened = false;
         let blocked = true;
         let keys = Object.keys(pieces);

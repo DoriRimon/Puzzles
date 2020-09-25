@@ -2,6 +2,8 @@
 // TODO - Castling
 // TODO - En Passant
 
+import {colors, pieces} from '../../shared/constants.js'
+
 class Piece {
     constructor(pos, color, id) {
         if (new.target == Piece) {
@@ -23,7 +25,7 @@ class Piece {
         if (x2 < 0 || x2 > board.length || y2 < 0 || y2 > board.length) // Out of scope
             return false;
         else if (board[x2][y2] != null)
-            if (board[x2][y2].constructor.name == "King") // Trying to Eat a king
+            if (board[x2][y2].constructor.name == pieces.king) // Trying to Eat a king
                 return false;
         if (x2 == x1 && y2 == y1) // Trying not to move
             return false;
@@ -38,7 +40,7 @@ class Piece {
 class Pawn extends Piece {
     constructor(pos, color) {
         super(pos, color);
-        this.name = "Pawn";
+        this.name = pieces.pawn;
         this.points = 1;
         this.numOfMoves = 0;
     }
@@ -48,7 +50,7 @@ class Pawn extends Piece {
             return false
         let [x1, y1] = [pos[0], pos[1]];
         let [x2, y2] = [sqaure[0], square[1]];
-        if (this.color == "white") {
+        if (this.color == colors.white) {
             if (board[x2][y2] == null) {
                 if (y2 == y1 && x2 == x1 - 1)
                     return true;
@@ -57,7 +59,7 @@ class Pawn extends Piece {
                         return true
                 else if ((y2 == y1 - 1 || y2 == y1 + 1) && x2 == x1 - 1) { // Eat En Passant
                     if (board[x1-1][y1] != null) {
-                        if (board[x1-1][y1].constructor.name == "Pawn") {
+                        if (board[x1-1][y1].constructor.name == pieces.pawn) {
                             if (board[x1-1][y1].numOfMoves == 0)
                                 return true;
                         }
@@ -77,7 +79,7 @@ class Pawn extends Piece {
                         return true
                 else if ((y2 == y1 - 1 || y2 == y1 + 1) && x2 == x1 + 1) { // Eat En Passant
                     if (board[x1+1][y1] != null) {
-                        if (board[x1+1][y1].constructor.name == "Pawn") {
+                        if (board[x1+1][y1].constructor.name == pieces.pawn) {
                             if (board[x1+1][y1].numOfMoves == 0)
                                 return true;
                         }
@@ -108,7 +110,7 @@ class Pawn extends Piece {
 class Rook extends Piece {
     contructor(pos, color) {
         super(pos, color);
-        this.name = "Rook";
+        this.name = pieces.rook;
         this.points = 5;
         this.numOfMoves = 0;
     }
@@ -169,7 +171,7 @@ class Rook extends Piece {
 class Knight extends Piece {
     constructor(pos, color) {
         super(pos, color);
-        this.name = "Knight";
+        this.name = pieces.knight;
         this.points = 3;
     }
 
@@ -198,7 +200,7 @@ class Knight extends Piece {
 class Bishop extends Piece {
     constructor(pos, color) {
         super(pos, color);
-        this.name = "Bishop";
+        this.name = pieces.bishop;
         this.points = 3;
     }
 
@@ -236,7 +238,7 @@ class Bishop extends Piece {
 class Queen extends Piece {
     constructor(pos, color) {
         super(pos, color);
-        this.name = "Queen";
+        this.name = pieces.queen;
         this.points = 9;
     }
 
@@ -259,7 +261,7 @@ class Queen extends Piece {
 class King extends Piece {
     constructor(pos, color) {
         super(pos, color);
-        this.name = "King";
+        this.name = pieces.king;
         this.numOfMoves = 0;
     }
 
@@ -283,8 +285,16 @@ class King extends Piece {
         return false;
     }
 
-    canCastleRight(board) {
+    canCastleRight(board, enemies, rightRook) {
+        if (rightRook.numOfMoves == 0) {
+            if (this.color == colors.white) {
 
+            }
+            else {
+                
+            }
+        }
+        return false;
     }
 
     canCastleLeft(board) {
