@@ -1,7 +1,9 @@
+import {colors, pieces} from '../../shared/constants.js'
+
 class Game {
     constructor() {
-        let player1 = new Player("white");
-        let player2 = new Player("black");
+        let player1 = new Player(colors.white);
+        let player2 = new Player(colors.black);
         this.mySelf = player1;
         this.opponent = player2;
 
@@ -35,27 +37,27 @@ class Game {
     }
 
     getMyPawns() {
-        return this.getMyInstruments("Pawn");
+        return this.getMyInstruments(pieces.pawn);
     }
 
     getMyRooks() {
-        return this.getMyInstruments("Rook");
+        return this.getMyInstruments(pieces.rook);
     }
 
     getMyKnights() {
-        return this.getMyInstruments("Knight");
+        return this.getMyInstruments(pieces.knight);
     }
 
     getMyBishops() {
-        return this.getMyInstruments("Bishop");
+        return this.getMyInstruments(pieces.bishop);
     }
 
     getMyQueen() {
-        return this.getMyInstruments("Queen");
+        return this.getMyInstruments(pieces.queen);
     }
 
     getMyKing() {
-        return this.getMyInstruments("King");
+        return this.getMyInstruments(pieces.king);
     }
 
     getMyPieces() {
@@ -81,27 +83,27 @@ class Game {
     }
 
     getOpponentsPawns() {
-        return this.getOponnentsInstruments("Pawn");
+        return this.getOponnentsInstruments(pieces.pwn);
     }
 
     getOpponentsRooks() {
-        return this.getOponnentsInstruments("Rook");
+        return this.getOponnentsInstruments(pieces.rook);
     }
 
     getOpponentsKnights() {
-        return this.getOponnentsInstruments("Knight");
+        return this.getOponnentsInstruments(pieces.knight);
     }
 
     getOponnentsBishops() {
-        return this.getOponnentsInstruments("Bishop");
+        return this.getOponnentsInstruments(pieces.bishop);
     }
 
     getOponnentsQueen() {
-        return this.getOponnentsInstruments("Queen");
+        return this.getOponnentsInstruments(pieces.queen);
     }
 
     getOponnentsKing() {
-        return this.getOponnentsInstruments("King");
+        return this.getOponnentsInstruments(pieces.king);
     }
 
     getOponnentsPieces() {
@@ -143,8 +145,8 @@ class Game {
             this.mySelf = player2;
             this.opponent = player1;
         }
+
+
+
     }
-
-
-
 }
