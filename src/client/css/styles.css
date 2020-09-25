@@ -47,6 +47,12 @@ body {
 	display: block;
 }
 
+.row {
+	height: 12.5%;
+	width: 100%;
+	overflow: hidden;
+}
+
 .chessboard {
 	margin-left: 50px;
 	margin-top: 28px;
@@ -55,11 +61,6 @@ body {
 	table-layout: fixed;
 }
 
-.row {
-	height: 10%;
-	width: 100%;
-	overflow: hidden;
-}
 
 .black {
 	float: left;
@@ -82,4 +83,12 @@ body {
 	display: table-cell;
 	vertical-align:middle;
 	border: none;
+}
+
+tr:nth-child(even) td:nth-child(even), tr:nth-child(odd) td:nth-child(odd) {
+	background: #999;
+}
+
+tr:nth-child(odd) td:nth-child(even), tr:nth-child(even) td:nth-child(odd) {
+	background: #fff;
 }

@@ -5,10 +5,23 @@ const config = {
     indentWithTabs: true,
     indentUnit: 4,
     autoCloseBrackets: true,
-    matchBrackets: true
+    matchBrackets: true,
+    showHint: true
 };
 
+window.onload = () => {
+}
+
 const editor = CodeMirror.fromTextArea(document.getElementById("code"), config);
+
+editor.on('inputRead', function onChange(editor, input) {
+    if (input.text[0] === ';' || input.text[0] === ' ' || input.text[0] === ":") {
+        return;
+    }
+    editor.showHint({
+        hint: CodeMirror.pythonHint
+    });
+});
 
 // console.log(docHeight = document.body.clientHeight)
 // console.log(editor.doc.height)

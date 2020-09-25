@@ -12,7 +12,7 @@ const MONGO_URL = "mongodb://localhost:27017/mydb";
 
 let index_html = "";
 
-HandleMongo();
+ConnectMongo();
 
 socket.use(JSONParser);
 socket.use('/node_modules', express.static(path.join(__dirname, '../../../node_modules')))
@@ -55,9 +55,10 @@ fs.readFile("src/client/html/index.html", (err, content) => {
 });
 
 
-function HandleMongo() {
-	mongoClient.connect(MONGO_URL, function(err, db) {
-		if (err) throw err;
+function ConnectMongo() {
+	mongoClient.connect(MONGO_URL, { useUnifiedTopology: true }, function(err, db) {
+		if (err)
+			throw err;
 		console.log("Database created!");
 		db.close();
 	  });
