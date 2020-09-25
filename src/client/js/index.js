@@ -22,5 +22,19 @@ setTimeout(selectTheme, 5000);*/
 
 function Submit() {
 	let code = editor.getValue();
-	console.log(code)
+    console.log(code)
+    
+    fetch("/submit", {
+        headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+        },
+        method:"POST",
+        body: JSON.stringify({
+            "code": code
+        })
+    }).then(result => {
+        // do something with the result
+        console.log("Completed with result:", result);
+    });
 }

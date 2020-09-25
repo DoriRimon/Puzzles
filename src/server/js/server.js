@@ -1,14 +1,37 @@
 const express = require('express');
 const socket = express();
 const port = 3000;
-const parser = require("jsdom");
+const HTMLParser = require("jsdom");
 const fs = require('fs');
-var index_html = "";
+const path = require("path");
+const bodyParser = require("body-parser")
+const JSONParser = bodyParser.json();
+const mongoClient = require('mongodb').MongoClient;
 
-socket.use("/", express.static(__dirname));
+const MONGO_URL = "mongodb://localhost:27017/mydb";
+
+let index_html = "";
+
+HandleMongo();
+
+socket.use(JSONParser);
+socket.use('/node_modules', express.static(path.join(__dirname, '../../../node_modules')))
+socket.use('/src/client', express.static(path.join(__dirname, '../../client')))
 
 socket.get('/', (req, res) => {
-	res.send(index_html)
+	res.send(index_html);
+});
+
+// Submit code (Save it)
+socket.post('/submit', (req,res) => {
+	code = req.body["code"];
+	console.log(code);
+
+	// Save the code
+	
+
+	// Return a response (TCP Protocol)
+	res.json(req.body);
 });
 	
 socket.listen(port, () => {
@@ -32,8 +55,17 @@ fs.readFile("src/client/html/index.html", (err, content) => {
 });
 
 
+function HandleMongo() {
+	mongoClient.connect(MONGO_URL, function(err, db) {
+		if (err) throw err;
+		console.log("Database created!");
+		db.close();
+	  });
+}
+
+
 function AddBots(html, bots) {
-	const dom = new parser.JSDOM(html);
+	const dom = new HTMLParser.JSDOM(html);
 	const document = dom.window.document;
 
 	bots.forEach(botName => {
