@@ -10,6 +10,7 @@ const config = {
 };
 
 window.onload = () => {
+    console.log("window onload");
 }
 
 const editor = CodeMirror.fromTextArea(document.getElementById("code"), config);
@@ -44,6 +45,9 @@ function Submit() {
         },
         method:"POST",
         body: JSON.stringify({
+            "group": "Doraz",
+            "sender": "Matan Raz",
+            "date": new Date(),
             "code": code
         })
     }).then(result => {

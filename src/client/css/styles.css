@@ -65,8 +65,9 @@ body {
 
 .black {
 	float: left;
-	width: 12.5%;
+	width: 12%;
 	height: 100%;
+	font-size: 47px;
 	background-color: #999;
 	text-align:center;
 	display: table-cell;
@@ -75,8 +76,9 @@ body {
 }
 .white {
 	float: left;
-	width: 12.5%;
+	width: 12%;
 	height: 100%;
+	font-size: 47px;
 	background-color: #fff;
 	text-align:center;
 	display: table-cell;

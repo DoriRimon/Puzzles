@@ -8,11 +8,28 @@ const bodyParser = require("body-parser")
 const JSONParser = bodyParser.json();
 const mongoClient = require('mongodb').MongoClient;
 
-const MONGO_URL = "mongodb://localhost:27017/mydb";
+const MONGO_URL = "mongodb://localhost:27017/";
 
+let db;
 let index_html = "";
 
 ConnectMongo();
+
+fs.readFile("src/client/html/index.html", (err, content) => {
+	if (err) {
+		console.log("error when reading data.json:\n" + err);
+		process.exit(1);
+	}
+	else {
+		try {
+			index_html = AddBots(content, ["Skipper", "Rico"]);
+		}
+		catch (e) {
+			console.log("error when parsing data.json:\n" + e);
+			process.exit(1);
+		}
+	}
+});
 
 socket.use(JSONParser);
 socket.use('/node_modules', express.static(path.join(__dirname, '../../../node_modules')))
@@ -24,11 +41,13 @@ socket.get('/', (req, res) => {
 
 // Submit code (Save it)
 socket.post('/submit', (req,res) => {
+	group = req.body["group"];
+	sender = req.body["sender"];
+	date = req.body["date"];
 	code = req.body["code"];
-	console.log(code);
 
 	// Save the code
-	
+	UploadCode(group, sender, date, code);
 
 	// Return a response (TCP Protocol)
 	res.json(req.body);
@@ -38,32 +57,39 @@ socket.listen(port, () => {
 	console.log(`Webkit listening at http://localhost:${port}`);
 });
 
-fs.readFile("src/client/html/index.html", (err, content) => {
-	if (err) {
-		console.log("error when reading data.json:\n" + err);
-		process.exit(1);
-	}
-	else {
-		try {
-			index_html = AddBots(content, ["bad dude man 1", "bad dude another man 2"]);
-		}
-		catch (e) {
-			console.log("error when parsing data.json:\n" + e);
-			process.exit(1);
-		}
-	}
-});
-
-
 function ConnectMongo() {
-	mongoClient.connect(MONGO_URL, { useUnifiedTopology: true }, function(err, db) {
+	mongoClient.connect(MONGO_URL, { useUnifiedTopology: true }, function(err, database) {
 		if (err)
 			throw err;
-		console.log("Database created!");
-		db.close();
-	  });
+		console.log("Database Connected!");
+		db = database.db("mydb");
+
+		db.collection("codes", (err, lst) => {
+			if (err)
+				throw err;
+			console.log("Collection codes found.");
+		})
+	});
 }
 
+function CloseConnection() {
+	db.close();
+}
+
+function UploadCode(group, sender, date, code) {
+	let uploadObj = {}
+	uploadObj[group] = {
+		sender: sender,
+		date: date,
+		code: code
+	}
+
+	db.collection("codes").insertOne(uploadObj, (err, res) => {
+		if (err)
+			throw err;
+		console.log(`Inserted Code From ${sender}\n\n`);
+	});
+}
 
 function AddBots(html, bots) {
 	const dom = new HTMLParser.JSDOM(html);
