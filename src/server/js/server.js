@@ -36,6 +36,7 @@ socket.use('/node_modules', express.static(path.join(__dirname, '../../../node_m
 socket.use('/src/client', express.static(path.join(__dirname, '../../client')))
 
 socket.get('/', (req, res) => {
+	console.log(index_html);
 	res.send(index_html);
 });
 
@@ -56,6 +57,23 @@ socket.post('/submit', (req,res) => {
 socket.listen(port, () => {
 	console.log(`Webkit listening at http://localhost:${port}`);
 });
+
+fs.readFile("src/client/html/index.html", 'utf8', (err, content) => {
+	if (err) {
+		console.log("error when reading data.json:\n" + err);
+		process.exit(1);
+	}
+	else {
+		try {
+			index_html = AddBots(content, ["bad dude man 1", "bad dude another man 2"]);
+		}
+		catch (e) {
+			console.log("error when parsing data.json:\n" + e);
+			process.exit(1);
+		}
+	}
+});
+
 
 function ConnectMongo() {
 	mongoClient.connect(MONGO_URL, { useUnifiedTopology: true }, function(err, database) {
