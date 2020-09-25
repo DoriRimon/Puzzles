@@ -37,16 +37,6 @@ body {
 	cursor: pointer;
 }
 
-#game {
-    background-color: blue;
-	margin-top: 30px;
-	margin-left: 5px;
-	width: 100%;
-	height: 650px;  /* Needs to be percentage (Also CodeMirror height) */
-	align-self: center;
-	display: block;
-}
-
 .row {
 	height: 12.5%;
 	width: 100%;
@@ -56,17 +46,17 @@ body {
 .chessboard {
 	width: 640px;
 	height: 640px;
-	margin-left: 50px;
-	margin-top: 28px;
+	margin-left: 25px;
+	margin-top: 30px;
 	border: 3px solid #333;
 	border-spacing: 0;
-	table-layout: fixed;
 }
 
 .black {
 	float: left;
-	width: 12.5%;
-	height: 100%;
+	width: 80px;
+	height: 80px;
+	font-size: 50px;
 	background-color: #999;
 	text-align:center;
 	display: table-cell;
@@ -75,19 +65,12 @@ body {
 }
 .white {
 	float: left;
-	width: 12.5%;
-	height: 100%;
+	width: 80px;
+	height: 80px;
+	font-size: 50px;
 	background-color: #fff;
 	text-align:center;
 	display: table-cell;
 	vertical-align:middle;
 	border: none;
-}
-
-tr:nth-child(even) td:nth-child(even), tr:nth-child(odd) td:nth-child(odd) {
-	background: #999;
-}
-
-tr:nth-child(odd) td:nth-child(even), tr:nth-child(even) td:nth-child(odd) {
-	background: #fff;
 }

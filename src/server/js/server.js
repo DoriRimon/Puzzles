@@ -19,6 +19,7 @@ socket.use('/node_modules', express.static(path.join(__dirname, '../../../node_m
 socket.use('/src/client', express.static(path.join(__dirname, '../../client')))
 
 socket.get('/', (req, res) => {
+	console.log(index_html);
 	res.send(index_html);
 });
 
@@ -38,7 +39,7 @@ socket.listen(port, () => {
 	console.log(`Webkit listening at http://localhost:${port}`);
 });
 
-fs.readFile("src/client/html/index.html", (err, content) => {
+fs.readFile("src/client/html/index.html", 'utf8', (err, content) => {
 	if (err) {
 		console.log("error when reading data.json:\n" + err);
 		process.exit(1);
