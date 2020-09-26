@@ -1,17 +1,11 @@
-// TODO - Boundaries to x2 & y2
-// TODO - Castling
-// TODO - En Passant
-
 import {colors, pieces} from '../../shared/constants.js'
 
 class Piece {
     constructor(pos, color, id) {
-        if (new.target == Piece) {
+        if (new.target == Piece)
             throw new TypeError("Cannot construct abstract class");
-        }
-        if (this.canMove(board, sqaure) == undefined) {
+        if (this.canMove(board, sqaure) == undefined)
             throw new TypeError("Must implement canMove method");
-        }
         this.pos = pos;
         this.color = color
         this.points;
@@ -58,9 +52,9 @@ class Pawn extends Piece {
                     if (this.numOfMoves == 0 && board[x1-1][y1] == null)
                         return true
                 else if ((y2 == y1 - 1 || y2 == y1 + 1) && x2 == x1 - 1) { // Eat En Passant
-                    if (board[x1-1][y1] != null) {
-                        if (board[x1-1][y1].constructor.name == pieces.pawn) {
-                            if (board[x1-1][y1].numOfMoves == 0)
+                    if (board[x2][y2] == null && board[x1][y2] != null) {
+                        if (board[x1][y2].constructor.name == pieces.pawn) {
+                            if (board[x1][y2].numOfMoves == 0)
                                 return true;
                         }
                     }
@@ -68,7 +62,7 @@ class Pawn extends Piece {
                 
             }
             else if ((y2 == y1 - 1 || y2 == y1 + 1) && x2 == x1 - 1) // Eat
-                return true
+                return true;
         }
         else {
             if (board[x2][y2] == null) {
@@ -78,9 +72,9 @@ class Pawn extends Piece {
                     if (this.numOfMoves == 0 && board[x1+1][y1] == null)
                         return true
                 else if ((y2 == y1 - 1 || y2 == y1 + 1) && x2 == x1 + 1) { // Eat En Passant
-                    if (board[x1+1][y1] != null) {
-                        if (board[x1+1][y1].constructor.name == pieces.pawn) {
-                            if (board[x1+1][y1].numOfMoves == 0)
+                    if (board[x2][y2] == null && board[x1][y2] != null) {
+                        if (board[x1][y2].constructor.name == pieces.pawn) {
+                            if (board[x1][y2].numOfMoves == 0)
                                 return true;
                         }
                     }
@@ -88,7 +82,7 @@ class Pawn extends Piece {
                 
             }
             else if ((y2 == y1 - 1 || y2 == y1 + 1) && x2 == x1 + 1) // Eat
-                return true
+                return true;
         }
         return false;
     }
@@ -157,14 +151,22 @@ class Rook extends Piece {
         return true;
     }
 
-    canMoveByCastle(board, square) {
-
+    canMoveByCastle(board, enemies, king) {
+        if ((this.color == colors.white && this.square[1] < king.square[1]) || (this.color == colors.black && this.square[1] > king.square[1]))
+                return king.canCastleLeft(board, enemies, this);
+        else
+            return king.canCastleRight(board, enemies, this);
     }
 
     canThreat(board, square) {
-        if (this.canMove(board, square) && !this.canMoveByCastle(board, square))
+        if (this.canMove(board, square))
             return true;
         return false;
+    }
+
+    move(square) {
+        super.move(square);
+        this.numOfMoves++;
     }
 }
 
@@ -285,23 +287,77 @@ class King extends Piece {
         return false;
     }
 
-    canCastleRight(board, enemies, rightRook) {
-        if (rightRook.numOfMoves == 0) {
-            if (this.color == colors.white) {
+    
+    isChecked(board, enemies) {
+        for (enemy of enemies) {
+            if (enemy.canThreat(board, this.square))
+                return true;
+        }
+        return false;
+    }
 
+    canCastleRight(board, enemies, rightRook) {
+        if (!this.isChecked(board, enemies) && rightRook.numOfMoves == 0 && this.numOfMoves == 0) {
+            if (this.color == colors.white) {
+                for (let i = 0; i < 2; i++) {
+                    if (board[7, 4 + i] != null)
+                        return false;
+                    for (enemy of enemies) {
+                        if (enemy.canThreat(board, [7, 4 + i]))
+                            return false;
+                    }
+                }
+                return true;
             }
             else {
-                
+                for (let i = 0; i < 3; i++) {
+                    if (board[0, i + 1] != null)
+                        return false;
+                    for (enemy of enemies) {
+                        if (enemy.canThreat(board, [0, i + 1]))
+                            return false;
+                    }
+                }
+                return true;
             }
         }
         return false;
     }
 
-    canCastleLeft(board) {
-
+    canCastleLeft(board, enemies, leftRook) {
+        if (!this.isChecked(board, enemies) && leftRook.numOfMoves == 0 && this.numOfMoves == 0) {
+            if (this.color == colors.white) {
+                for (let i = 0; i < 3; i++) {
+                    if (board[7, i +1] != null)
+                        return false;
+                    for (enemy of enemies) {
+                        if (enemy.canThreat(board, [7, i + 1]))
+                            return false;
+                    }
+                    return true;
+                }
+            }
+            else {
+                for (let i = 0; i < 2; i++) {
+                    if (board[0, 4 + i] != null)
+                        return false;
+                    for (enemy of enemies) {
+                        if (enemy.canThreat(board, [0, 4 + i]))
+                            return false;
+                    }
+                }
+                return true;
+            }
+        }
+        return false;
     }
 
     canCastle(board) {
-        return this.canCastleLeft(board) && this.canCastleRight(board);
+        return this.canCastleLeft(board) || this.canCastleRight(board);
+    }
+
+    move(square) {
+        super.move(square);
+        this.numOfMoves++;
     }
 }

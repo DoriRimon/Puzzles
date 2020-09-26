@@ -101,10 +101,6 @@ function UploadCode(group, sender, date, code) {
 		code: code
 	}
 
-	single_upload = {
-		
-	}
-
 	db.collection("codes").insertOne(uploadObj, (err, res) => {
 		if (err)
 			throw err;
