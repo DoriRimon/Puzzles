@@ -36,7 +36,6 @@ socket.use('/node_modules', express.static(path.join(__dirname, '../../../node_m
 socket.use('/src/client', express.static(path.join(__dirname, '../../client')))
 
 socket.get('/', (req, res) => {
-	console.log(index_html);
 	res.send(index_html);
 });
 
@@ -65,7 +64,7 @@ fs.readFile("src/client/html/index.html", 'utf8', (err, content) => {
 	}
 	else {
 		try {
-			index_html = AddBots(content, ["bad dude man 1", "bad dude another man 2"]);
+			index_html = AddBots(content, ["Skipper", "Rico"]);
 		}
 		catch (e) {
 			console.log("error when parsing data.json:\n" + e);
@@ -100,6 +99,10 @@ function UploadCode(group, sender, date, code) {
 		sender: sender,
 		date: date,
 		code: code
+	}
+
+	single_upload = {
+		
 	}
 
 	db.collection("codes").insertOne(uploadObj, (err, res) => {
