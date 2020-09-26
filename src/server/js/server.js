@@ -102,6 +102,12 @@ function UploadCode(group, sender, date, code) {
 		code: code
 	}
 
+	let singleUpload = {
+		sender: sender,
+		date: date, 
+		code: code
+	}
+
 	db.collection("codes").insertOne(uploadObj, (err, res) => {
 		if (err)
 			throw err;
