@@ -30,10 +30,6 @@
     </div>
     <nav class="homepage-nav">
       <div class="nav-inner hover-effect">
-        <a href="guide.html">
-          <span class="piece">♜</span>
-           Help
-        </a>
         <a href="leaderboard.html">
           <span class="piece">♞</span>
            Leaderboard
@@ -42,24 +38,29 @@
           <span class="piece">♝</span>
            Documentation
         </a>
+        <a href="guide.html">
+          <span class="piece">♜</span>
+           Examples
+        </a>
       </div>
     </nav>
     <main>
       <div class="panel" id="left-panel">
         <!-- Create CodeMirror -->
-        <textarea id="code" class="CodeMirror"></textarea>
+        <textarea id="code" class="code-mirror"></textarea>
         <script type="text/javascript" src="/src/client/js/index.js"></script>
+        <button id="submit" onclick="Submit()">Submit</button>
         
         <!-- Bots Table -->
-        <table class="bots" id="tableBots">
+        <!--table class="bots" id="tableBots">
           <tr>
-            <td><button id="submit" onclick="Submit()">Submit!</button></td>
+            <td></td>
           </tr>
-        </table>
+        </table-->
       </div>
       
       <div class="panel" id="right-panel">
-
+        <div id="board"></div>
       </div>
     </main>
     <footer>
