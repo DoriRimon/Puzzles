@@ -5,3 +5,5 @@ function move(s1, s2) {
     square2.innerHTML = square1.innerHTML;
     square1.innerHTML = "";
 }
+
+move(["1", "4"], ["3", "4"])

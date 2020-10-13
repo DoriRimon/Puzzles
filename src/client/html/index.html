@@ -5,17 +5,20 @@
     <link type="text/css" rel="stylesheet" href="/src/client/css/styles.css">
 
     <!-- Editor Related -->
-    <link rel="stylesheet" type="text/css" href="../../../node_modules/codemirror/lib/codemirror.css">
-    <script type="text/javascript" src="../../../node_modules/codemirror/lib/codemirror.js"></script>
-    <script type="text/javascript" src="../../../node_modules/codemirror/addon/edit/closebrackets.js"></script>
-    <script type="text/javascript" src="../../../node_modules/codemirror/addon/edit/matchbrackets.js"></script>
+    <link rel="stylesheet" type="text/css" href="/node_modules/codemirror/lib/codemirror.css">
+    <link rel="stylesheet" type="text/css" href="/node_modules/codemirror/addon/hint/show-hint.css">
+    <script type="text/javascript" src="/node_modules/codemirror/lib/codemirror.js"></script>
+    <script type="text/javascript" src="/node_modules/codemirror/addon/edit/closebrackets.js"></script>
+    <script type="text/javascript" src="/node_modules/codemirror/addon/edit/matchbrackets.js"></script>
+    <script type="text/javascript" src="/node_modules/codemirror/addon/hint/show-hint.js"></script>
+    <script type="text/javascript" src="/node_modules/codemirror/addon/hint/python-hint.js"></script>
 
     <!-- Themes -->
-    <link rel="stylesheet" type="text/css" href="../../../node_modules/codemirror/theme/ambiance.css">
-    <link rel="stylesheet" type="text/css" href="../../../node_modules/codemirror/theme/solarized.css">
+    <link rel="stylesheet" type="text/css" href="/node_modules/codemirror/theme/ambiance.css">
+    <link rel="stylesheet" type="text/css" href="/node_modules/codemirror/theme/solarized.css">
 
     <!-- Languages Supported -->
-    <script type="text/javascript" src="../../../node_modules/codemirror/mode/python/python.js"></script>
+    <script type="text/javascript" src="/node_modules/codemirror/mode/python/python.js"></script>
   </head>
   <body>
     <div class="column">
@@ -124,11 +127,7 @@
           </div>
         </div>
 
-        <script>
-          let square1 = document.getElementById(`14`);
-          let square2 = document.getElementById(`34`);
-          square2.innerHTML = square1.innerHTML;
-          square1.innerHTML = "";
+        <script src="/src/client/js/chess.js"></script>
         </script>
     </div>
   </body>
