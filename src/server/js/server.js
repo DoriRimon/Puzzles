@@ -7,29 +7,12 @@ const path = require("path");
 const bodyParser = require("body-parser")
 const JSONParser = bodyParser.json();
 const mongoClient = require('mongodb').MongoClient;
-
 const MONGO_URL = "mongodb://localhost:27017/";
 
 let db;
 let index_html = "";
 
 ConnectMongo();
-
-fs.readFile("src/client/html/index.html", (err, content) => {
-	if (err) {
-		console.log("error when reading data.json:\n" + err);
-		process.exit(1);
-	}
-	else {
-		try {
-			index_html = AddBots(content, ["Skipper", "Rico"]);
-		}
-		catch (e) {
-			console.log("error when parsing data.json:\n" + e);
-			process.exit(1);
-		}
-	}
-});
 
 socket.use(JSONParser);
 socket.use('/node_modules', express.static(path.join(__dirname, '../../../node_modules')))
@@ -82,11 +65,11 @@ function ConnectMongo() {
 		console.log("Database Connected!");
 		db = database.db("mydb");
 
-		db.collection("codes", (err, lst) => {
+		db.createCollection("codes", function(err, res) {
 			if (err)
 				throw err;
-			console.log("Collection codes found.");
-		})
+			console.log("Collection created");
+		});
 	});
 }
 
@@ -95,13 +78,7 @@ function CloseConnection() {
 }
 
 function UploadCode(group, sender, date, code) {
-	let uploadObj = {}
-	uploadObj[group] = {
-		sender: sender,
-		date: date,
-		code: code
-	}
-
+	
 	let singleUpload = {
 		sender: sender,
 		date: date, 
