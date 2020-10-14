@@ -1,2 +1,2 @@
 # WebAthon
-New highly advanced Webkit For Chess!
+<img src="https://github.com/DoriRimon/WebAthon/blob/master/readme_files/homepage-hero.png">
