@@ -34,7 +34,11 @@ editor.on('inputRead', function onChange(editor, input) {
 }
 setTimeout(selectTheme, 5000);*/
 
+<<<<<<< HEAD
+Submit = () => {
+=======
 function submit() {
+>>>>>>> 18f8b6c5716ec2e771473aa60666a7576f5ba8cf
 	let code = editor.getValue();
     console.log(code)
     
@@ -52,6 +56,27 @@ function submit() {
         })
     }).then(result => {
         // do something with the result
+<<<<<<< HEAD
+        console.log("Submitted with result:", result);
+    });
+}
+
+RunAgainst = (botName) => {
+    fetch("/run", {
+        headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+        },
+        method:"POST",
+        body: JSON.stringify({
+            "code": code,
+            "botName": botName
+        })
+    }).then(result => {
+        // do something with the result
+        console.log("Ran against bot with result:", result);
+=======
         console.log('Completed with result:', result);
+>>>>>>> 18f8b6c5716ec2e771473aa60666a7576f5ba8cf
     });
 }
