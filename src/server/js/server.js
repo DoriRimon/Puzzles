@@ -23,7 +23,7 @@ socket.get('/', (req, res) => {
 });
 
 // Submit code (Save it)
-socket.post('/submit', (req,res) => {
+socket.post('/submit', (req, res) => {
 	group = req.body["group"];
 	sender = req.body["sender"];
 	date = req.body["date"];

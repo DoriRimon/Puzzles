@@ -75,6 +75,7 @@ a:hover {
 
 .homepage-nav {
 	border-bottom: 1px solid #efefef;
+	cursor: pointer;
 }
 
 .nav-inner	{
@@ -120,29 +121,29 @@ main {
 	margin-bottom: 10px;
 	padding: 8px;
 	align-self: center;
-	cursor: pointer;
 	font-family: 'Courier New', arial, sans-serif;
 	border: none;
 	border-radius: 4px;
 	background-color: #EFEFEF;
 	transition: 0.2s linear;
 	outline: none;
-}
-
-#submit span {
-	width: 0px;
-	height: 0px;
-	text-indent: -2px;
+	width: 73px;
+	cursor: pointer;
 }
 
 #submit .piece {
-	opacity: 0%;
-	transition: 0.2s linear;
-	transition-delay: 0.1s;
+	visibility: hidden;
+	transition: 0s;
 }
 
 #submit:hover .piece {
-	opacity: 100%;
+	visibility: visible;
+	text-indent: 3px;
+	transition: 0.3s ease-out;
+}
+
+#submit:hover {
+	width: auto;
 }
 
 #submit:hover span {
@@ -150,12 +151,15 @@ main {
 	height: auto;
 }
 
-#submit:hover {
-	text-indent: 6px;
-}
-
 #submit:active {
 	background-color: #d6d4d4;
+}
+
+
+#right-panel {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 /*-----|| Footer ||-----*/

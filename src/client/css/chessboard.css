@@ -1,0 +1,23 @@
+.innerBoard {
+    border: 2px solid black;
+    box-sizing: content-box;
+}
+
+.square {
+    float: left;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.white {
+    background-color: #fff;
+    color: #fcd8dc;
+}
+
+.black {
+    background-color: #fcd8dc;
+    color: #fff;
+}
+
