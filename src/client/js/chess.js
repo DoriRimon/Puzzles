@@ -1,15 +1,15 @@
-const wR = '../img/wR.png';
-const wN = '../img/wN.png';
-const wB = '../img/wB.png';
-const wK = '../img/wK.png';
-const wQ = '../img/wQ.png';
-const wP = '../img/wP.png';
-const bR = '../img/bR.png';
-const bN = '../img/bN.png';
-const bB = '../img/bB.png';
-const bK = '../img/bK.png';
-const bQ = '../img/bQ.png';
-const bP = '../img/bP.png';
+const wR = '../img/themes/white-red-light/wR.png';
+const wN = '../img/themes/white-red-light/wN.png';
+const wB = '../img/themes/white-red-light/wB.png';
+const wK = '../img/themes/white-red-light/wK.png';
+const wQ = '../img/themes/white-red-light/wQ.png';
+const wP = '../img/themes/white-red-light/wP.png';
+const bR = '../img/themes/white-red-light/bR.png';
+const bN = '../img/themes/white-red-light/bN.png';
+const bB = '../img/themes/white-red-light/bB.png';
+const bK = '../img/themes/white-red-light/bK.png';
+const bQ = '../img/themes/white-red-light/bQ.png';
+const bP = '../img/themes/white-red-light/bP.png';
 
 const size = 8;
 function rowToSign(row) {
