@@ -6,7 +6,6 @@ const fs = require('fs');
 const path = require("path");
 const JSONParser = require("body-parser").json();
 const mongoClient = require('mongodb').MongoClient;
-
 const MONGO_URL = "mongodb://localhost:27017/";
 
 import getCode from "./codes.js";
@@ -60,7 +59,7 @@ socket.listen(port, () => {
 
 fs.readFile("src/client/html/index.html", 'utf8', (err, content) => {
 	if (err) {
-		console.log("error when reading data.json:\n" + err);
+		console.log("error when reading index.html:\n" + err);
 		process.exit(1);
 	}
 	else {
@@ -68,7 +67,7 @@ fs.readFile("src/client/html/index.html", 'utf8', (err, content) => {
 			index_html = AddBots(content, ["Skipper", "Rico"]);
 		}
 		catch (e) {
-			console.log("error when parsing data.json:\n" + e);
+			console.log("error when parsing index.html:\n" + e);
 			process.exit(1);
 		}
 	}
@@ -82,11 +81,11 @@ function ConnectMongo() {
 		console.log("Database Connected!");
 		db = database.db("mydb");
 
-		db.collection("codes", (err, lst) => {
+		db.createCollection("codes", function(err, res) {
 			if (err)
 				throw err;
-			console.log("Collection codes found.");
-		})
+			console.log("Collection created");
+		});
 	});
 }
 

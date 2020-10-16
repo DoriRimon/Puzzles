@@ -1,7 +1,7 @@
 const config = {
     lineNumbers: true,
-    mode: "text/x-python",
-    theme: "ambiance",
+    mode: 'text/x-python',
+    theme: 'ambiance',
     indentWithTabs: true,
     indentUnit: 4,
     autoCloseBrackets: true,
@@ -10,13 +10,13 @@ const config = {
 };
 
 window.onload = () => {
-    console.log("window onload");
+    console.log('window onload');
 }
 
-const editor = CodeMirror.fromTextArea(document.getElementById("code"), config);
+const editor = CodeMirror.fromTextArea(document.getElementById('code'), config);
 
 editor.on('inputRead', function onChange(editor, input) {
-    if (input.text[0] === ';' || input.text[0] === ' ' || input.text[0] === ":") {
+    if (input.text[0] === ';' || input.text[0] === ' ' || input.text[0] === ':') {
         return;
     }
     editor.showHint({
@@ -30,28 +30,33 @@ editor.on('inputRead', function onChange(editor, input) {
 // CodeMirror.height = docHeight
 
 /*function selectTheme() {
-    editor.setOption("theme", "solarized dark");
+    editor.setOption('theme', 'solarized dark');
 }
 setTimeout(selectTheme, 5000);*/
 
+<<<<<<< HEAD
 Submit = () => {
+=======
+function submit() {
+>>>>>>> 18f8b6c5716ec2e771473aa60666a7576f5ba8cf
 	let code = editor.getValue();
     console.log(code)
     
-    fetch("/submit", {
+    fetch('/submit', {
         headers: {
             'Accept': 'application/json, text/plain, */*',
             'Content-Type': 'application/json'
         },
-        method:"POST",
+        method:'POST',
         body: JSON.stringify({
-            "group": "Doraz",
-            "sender": "Matan Raz",
-            "date": new Date(),
-            "code": code
+            'group': 'Doraz',
+            'sender': 'Matan Raz',
+            'date': new Date(),
+            'code': code
         })
     }).then(result => {
         // do something with the result
+<<<<<<< HEAD
         console.log("Submitted with result:", result);
     });
 }
@@ -70,5 +75,8 @@ RunAgainst = (botName) => {
     }).then(result => {
         // do something with the result
         console.log("Ran against bot with result:", result);
+=======
+        console.log('Completed with result:', result);
+>>>>>>> 18f8b6c5716ec2e771473aa60666a7576f5ba8cf
     });
 }

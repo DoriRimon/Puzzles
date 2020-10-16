@@ -3,6 +3,7 @@
   <head>
     <title>Webkit</title>
     <link type="text/css" rel="stylesheet" href="/src/client/css/styles.css">
+    <link type="text/css" rel="stylesheet" href="/src/client/css/chessboard.css">
 
     <!-- Editor Related -->
     <link rel="stylesheet" type="text/css" href="/node_modules/codemirror/lib/codemirror.css">
@@ -20,6 +21,7 @@
     <!-- Languages Supported -->
     <script type="text/javascript" src="/node_modules/codemirror/mode/javascript/javascript.js"></script>
   </head>
+<<<<<<< HEAD
   <body>
     <div class="column">
       <!-- Create CodeMirror -->
@@ -32,103 +34,65 @@
           <td><button id="submit" onclick="Submit()">Submit!</button></td>
         </tr>
       </table>
+=======
+  <body class="homepage">
+    <div class="top-section">
+      <div class="top-inner">
+        <!--img id="white-king" src="../img/wK.png" alt="White King"-->
+        <h1>WebAthon</h1>
+        <h3>Let the code battles begin</h3>
+      </div>
+>>>>>>> 18f8b6c5716ec2e771473aa60666a7576f5ba8cf
     </div>
-    
-    <div class="column">
-      <meta charset="UTF-8"> 
-        <div class="chessboard">
-          <!-- 1st -->
-          <div class="row" id="row1"> 
-            <div class="white" id="00">♜</div>
-            <div class="black" id="01">♞</div>
-            <div class="white" id="02">♝</div>
-            <div class="black" id="03">♛</div>
-            <div class="white" id="04">♚</div>
-            <div class="black" id="05">♝</div>
-            <div class="white" id="06">♞</div>
-            <div class="black" id="07">♜</div>
-          </div>
-          <!-- 2nd -->
-          <div class="row" id="row2"> 
-            <div class="black" id="10">♟</div>
-            <div class="white" id="11">♟</div>
-            <div class="black" id="12">♟</div>
-            <div class="white" id="13">♟</div>
-            <div class="black" id="14">♟</div>
-            <div class="white" id="15">♟</div>
-            <div class="black" id="16">♟</div>
-            <div class="white" id="17">♟</div>
-          </div>
-          <!-- 3th -->
-          <div class="row" id="row3"> 
-            <div class="white" id="20"></div>
-            <div class="black" id="21"></div>
-            <div class="white" id="22"></div>
-            <div class="black" id="23"></div>
-            <div class="white" id="24"></div>
-            <div class="black" id="25"></div>
-            <div class="white" id="26"></div>
-            <div class="black" id="27"></div>
-          </div>
-          <!-- 4st -->
-          <div class="row" id="row4"> 
-            <div class="black" id="30"></div>
-            <div class="white" id="31"></div>
-            <div class="black" id="32"></div>
-            <div class="white" id="33"></div>
-            <div class="black" id="34"></div>
-            <div class="white" id="35"></div>
-            <div class="black" id="36"></div>
-            <div class="white" id="37"></div>
-          </div>
-          <!-- 5th -->
-          <div class="row" id="row5"> 
-            <div class="white" id="40"></div>
-            <div class="black" id="41"></div>
-            <div class="white" id="42"></div>
-            <div class="black" id="43"></div>
-            <div class="white" id="44"></div>
-            <div class="black" id="45"></div>
-            <div class="white" id="46"></div>
-            <div class="black" id="47"></div>
-          </div>
-          <!-- 6th -->
-          <div class="row" id="row6"> 
-            <div class="black" id="50"></div>
-            <div class="white" id="51"></div>
-            <div class="black" id="52"></div>
-            <div class="white" id="53"></div>
-            <div class="black" id="54"></div>
-            <div class="white" id="55"></div>
-            <div class="black" id="56"></div>
-            <div class="white" id="57"></div>
-          </div>
-          <!-- 7th -->
-          <div class="row" id="row7"> 
-            <div class="white" id="60">♙</div>
-            <div class="black" id="61">♙</div>
-            <div class="white" id="62">♙</div>
-            <div class="black" id="63">♙</div>
-            <div class="white" id="64">♙</div>
-            <div class="black" id="65">♙</div>
-            <div class="white" id="66">♙</div>
-            <div class="black" id="67">♙</div>
-          </div>
-          <!-- 8th -->
-          <div class="row" id="row8"> 
-            <div class="black" id="70">♖</div>
-            <div class="white" id="71">♘</div>
-            <div class="black" id="72">♗</div>
-            <div class="white" id="73">♕</div>
-            <div class="black" id="74">♔</div>
-            <div class="white" id="75">♗</div>
-            <div class="black" id="76">♘</div>
-            <div class="white" id="77">♖</div>
-          </div>
+    <nav class="homepage-nav">
+      <div class="nav-inner hover-effect">
+        <a href="leaderboard.html">
+          <span class="piece">♞</span>
+           Leaderboard
+        </a>
+        <a href="documentation.html">
+          <span class="piece">♝</span>
+           Documentation
+        </a>
+        <a href="guide.html">
+          <span class="piece">♜</span>
+           Examples
+        </a>
+      </div>
+    </nav>
+    <main>
+      <div class="panel" id="left-panel">
+        <!-- Create CodeMirror -->
+        <textarea id="code" class="code-mirror"></textarea>
+        <script type="text/javascript" src="/src/client/js/index.js"></script>
+        <button id="submit" onclick="submit()">
+          Submit
+          <span class="piece">♛</span>
+        </button>
+        
+        <!-- Bots Table -->
+        <!--table class="bots" id="tableBots">
+          <tr>
+            <td></td>
+          </tr>
+        </table-->
+      </div>
+      
+      <div class="panel" id="right-panel">
+        <div id="board">
         </div>
-
-        <script src="/src/client/js/chess.js"></script>
-        </script>
-    </div>
+      </div>
+    </main>
+    <footer>
+      <p>
+        This is an open source project - the code can be found on  
+        <a href="https://github.com/DoriRimon/WebAthon" target="_blank">GitHub</a>
+      </p>
+    </footer>
   </body>
+  
+  <script src="../js/chess.js" type="text/javascript"></script>
+  <script>
+    chessboard('board', 600, 'start');
+  </script>
 </html>
