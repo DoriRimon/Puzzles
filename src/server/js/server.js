@@ -4,11 +4,13 @@ const port = 3000;
 const HTMLParser = require("jsdom");
 const fs = require('fs');
 const path = require("path");
-const bodyParser = require("body-parser")
-const JSONParser = bodyParser.json();
+const JSONParser = require("body-parser").json();
 const mongoClient = require('mongodb').MongoClient;
 
 const MONGO_URL = "mongodb://localhost:27017/";
+
+import getCode from "./codes.js";
+import run from "./run.js";
 
 let db;
 let index_html = "";
@@ -24,7 +26,7 @@ socket.get('/', (req, res) => {
 });
 
 // Submit code (Save it)
-socket.post('/submit', (req,res) => {
+socket.post('/submit', (req, res) => {
 	group = req.body["group"];
 	sender = req.body["sender"];
 	date = req.body["date"];
@@ -32,6 +34,21 @@ socket.post('/submit', (req,res) => {
 
 	// Save the code
 	UploadCode(group, sender, date, code);
+
+	// Return a response (TCP Protocol)
+	res.json(req.body);
+});
+
+// Run Code vs Bot
+socket.post('/run', (req, res) => {
+	code = req.body["code"];
+	botName = req.body["botName"];
+
+	botCode = getCode(botName);
+
+	gameResult = run(code, botCode);
+
+	// Find a way to send gameResult
 
 	// Return a response (TCP Protocol)
 	res.json(req.body);
@@ -106,6 +123,7 @@ function AddBots(html, bots) {
 		let playtag = document.createElement("td");
 		let playbutton = document.createElement("button");
 		playbutton.setAttribute("class", "play");
+		playbutton.setAttribute("onclick", `RunAgainst("${botName}")`);
 		playbutton.textContent = "Play Against";
 		playtag.appendChild(playbutton);
 
