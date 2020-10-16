@@ -4,7 +4,9 @@ const port = 3000;
 const HTMLParser = require("jsdom");
 const fs = require('fs');
 const path = require("path");
-const bodyParser = require("body-parser")
+const bodyParser = require("body-parser");
+const { resolve } = require('path');
+const { rejects } = require('assert');
 const JSONParser = bodyParser.json();
 const mongoClient = require('mongodb').MongoClient;
 const MONGO_URL = "mongodb://localhost:27017/";
@@ -42,7 +44,7 @@ socket.listen(port, () => {
 
 fs.readFile("src/client/html/index.html", 'utf8', (err, content) => {
 	if (err) {
-		console.log("error when reading data.json:\n" + err);
+		console.log("error when reading index.html:\n" + err);
 		process.exit(1);
 	}
 	else {
@@ -50,7 +52,7 @@ fs.readFile("src/client/html/index.html", 'utf8', (err, content) => {
 			index_html = AddBots(content, ["Skipper", "Rico"]);
 		}
 		catch (e) {
-			console.log("error when parsing data.json:\n" + e);
+			console.log("error when parsing index.html:\n" + e);
 			process.exit(1);
 		}
 	}
