@@ -24,6 +24,28 @@ a:hover {
 	text-decoration: underline;
 }
 
+/*-----|| Scrollbar ||-----*/
+
+/* width */
+::-webkit-scrollbar {
+	width: 12px;
+}
+  
+/* Track */
+::-webkit-scrollbar-track {
+	background: #f1f1f1;
+}
+  
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: #999;
+	border-radius: 4px;
+}
+  
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #777;
+}
 
 /*-----|| Hero - Top Section ||-----*/
 
@@ -91,14 +113,23 @@ a:hover {
 	text-align: center;
 	text-decoration: none;
 	position: relative;
+	border: none;
+	transition: font-size 0.1s ease-out;
+}
+
+.nav-inner a:hover {
+	/* border-left: 1px solid #efefef;
+	border-right: 1px solid #efefef; */
+	font-size: 19px;
 }
 
 .nav-inner .piece {
-  	visibility: hidden;
+	  opacity: 0%;
+	  transition: opacity 0.07s linear;
 }
 
 .hover-effect a:hover .piece {
-  	visibility: visible;
+	  opacity: 100%;
 }
 
 /*-----|| Main ||-----*/
@@ -154,7 +185,6 @@ main {
 #submit:active {
 	background-color: #d6d4d4;
 }
-
 
 #right-panel {
 	display: flex;

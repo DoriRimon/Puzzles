@@ -80,42 +80,26 @@ function startPosition(id) {
     let rows = board.firstElementChild.firstElementChild.childNodes;
 
     let row = rows[7];
-    let img;
     for (let j = 0; j < size; j++) {
         let square = row.childNodes[j];
         switch(j) {
             case 0:
             case 7:
-                img = document.createElement('img');
-                img.src = wR;
-                img.setAttribute('style', pieceStyle)
-                square.appendChild(img);
+                addPiece(square, wR);
                 break;
             case 1:
             case 6:
-                img = document.createElement('img');
-                img.src = wN;
-                img.setAttribute('style', pieceStyle)
-                square.appendChild(img);
+                addPiece(square, wN);
                 break;
             case 2:
             case 5:
-                img = document.createElement('img');
-                img.src = wB;
-                img.setAttribute('style', pieceStyle)
-                square.appendChild(img);
+                addPiece(square, wB);
                 break;
             case 3:
-                img = document.createElement('img');
-                img.src = wQ;
-                img.setAttribute('style', pieceStyle)
-                square.appendChild(img);
+                addPiece(square, wQ);
                 break;
             case 4:
-                img = document.createElement('img');
-                img.src = wK;
-                img.setAttribute('style', pieceStyle)
-                square.appendChild(img);
+                addPiece(square, wK);
                 break;
         }
     }
@@ -123,19 +107,13 @@ function startPosition(id) {
     row = rows[6];
     for (let j = 0; j < size; j++) {
         let square = row.childNodes[j];
-        img = document.createElement('img');
-        img.src = wP;
-        img.setAttribute('style', pieceStyle)
-        square.appendChild(img);
+        addPiece(square, wP);
     }
 
     row = rows[1];
     for (let j = 0; j < size; j++) {
         let square = row.childNodes[j];
-        img = document.createElement('img');
-        img.src = bP;
-        img.setAttribute('style', pieceStyle)
-        square.appendChild(img);
+        addPiece(square, bP);
     }
 
     row = rows[0];
@@ -144,39 +122,31 @@ function startPosition(id) {
         switch(j) {
             case 0:
             case 7:
-                img = document.createElement('img');
-                img.src = bR;
-                img.setAttribute('style', pieceStyle)
-                square.appendChild(img);
+                addPiece(square, bR);
                 break;
             case 1:
             case 6:
-                img = document.createElement('img');
-                img.src = bN;
-                img.setAttribute('style', pieceStyle)
-                square.appendChild(img);
+                addPiece(square, bN);
                 break;
             case 2:
             case 5:
-                img = document.createElement('img');
-                img.src = bB;
-                img.setAttribute('style', pieceStyle)
-                square.appendChild(img);
+                addPiece(square, bB);
                 break;
             case 3:
-                img = document.createElement('img');
-                img.src = bQ;
-                img.setAttribute('style', pieceStyle)
-                square.appendChild(img);
+                addPiece(square, bQ);
                 break;
             case 4:
-                img = document.createElement('img');
-                img.src = bK;
-                img.setAttribute('style', pieceStyle)
-                square.appendChild(img);
+                addPiece(square, bK);
                 break;
         }
     }
+}
+
+function addPiece(square, src) {
+    let img = document.createElement('img');
+    img.src = src;
+    img.setAttribute('style', pieceStyle)
+    square.appendChild(img);
 }
 
 function move(from, to) {
