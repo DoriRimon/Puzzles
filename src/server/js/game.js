@@ -4,8 +4,8 @@ class Game {
     constructor() {
         let player1 = new Player(colors.white);
         let player2 = new Player(colors.black);
-        this.mySelf = player1;
-        this.opponent = player2;
+        this.self = player1;
+        this.rival = player2;
 
         this.board = new Array(8);
         for (let i = 0; i < this.board.length; i++){
@@ -15,12 +15,12 @@ class Game {
         }
     }
 
-    getMySelf() {
-        return this.mySelf;
+    getSelf() {
+        return this.self;
     }
 
-    getOpponent() {
-        return this.opponent;
+    getRival() {
+        return this.rival;
     }
 
     getMyInstruments(name) { // Helping method
@@ -69,11 +69,11 @@ class Game {
         return pieces;
     }
 
-    getOponnentsInstruments(name) { // Helping method
+    getRivalInstruments(name) { // Helping method
         let pieces = [];
-        let keys = Object.keys(this.opponent.pieces);
+        let keys = Object.keys(this.rival.pieces);
         keys.forEach(function(key) {
-            p = this.opponent.pieces[key];
+            p = this.rival.pieces[key];
             if (p.name == name)
                 pieces.push(p);
         });
@@ -82,49 +82,49 @@ class Game {
         return pieces;
     }
 
-    getOpponentsPawns() {
+    getRivalPawns() {
         return this.getOponnentsInstruments(pieces.pwn);
     }
 
-    getOpponentsRooks() {
+    getRivalRooks() {
         return this.getOponnentsInstruments(pieces.rook);
     }
 
-    getOpponentsKnights() {
+    getRivalKnights() {
         return this.getOponnentsInstruments(pieces.knight);
     }
 
-    getOponnentsBishops() {
+    getRivalBishops() {
         return this.getOponnentsInstruments(pieces.bishop);
     }
 
-    getOponnentsQueen() {
+    getRivalQueen() {
         return this.getOponnentsInstruments(pieces.queen);
     }
 
-    getOponnentsKing() {
+    getRivalKing() {
         return this.getOponnentsInstruments(pieces.king);
     }
 
-    getOponnentsPieces() {
+    getRivalPieces() {
         let pieces = [];
-        let keys = Object.keys(this.opponent.pieces);
+        let keys = Object.keys(this.rival.pieces);
         keys.forEach(function(key) {
-            pieces.push(this.opponent.pieces[key]);
+            pieces.push(this.rival.pieces[key]);
         });
         return pieces;
     }
 
     getMyScore() { // Sum of scores of pieces I've eaten
         sum = 0;
-        for (p of this.getOponnentsPieces()) {
+        for (p of this.getRivalPieces()) {
             if (p.isEaten)
                 sum += p.score;
         }
         return sum;
     }
 
-    getOpponentScore() {
+    getRivalcore() {
         sum = 0;
         for (p of this.getMyInstruments()) {
             if (p.isEaten) 
@@ -135,18 +135,19 @@ class Game {
 
     run() {
         let turn = 0;
-
+        let moveTime = 0;
 
         if (turn % 2 == 0) {
-            this.mySelf = player1;
-            this.opponent = player2;
+            this.self = player1;
+            this.rival = player2;
         }
         else {
-            this.mySelf = player2;
-            this.opponent = player1;
+            this.self = player2;
+            this.rival = player1;
         }
 
-
-
+        // self.move() as thread..
+        // if too long:
+        //     RE
     }
 }
