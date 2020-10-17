@@ -1,3 +1,4 @@
+const size = 8;
 const wR = '../img/themes/white-red-light/wR.png';
 const wN = '../img/themes/white-red-light/wN.png';
 const wB = '../img/themes/white-red-light/wB.png';
@@ -10,8 +11,8 @@ const bB = '../img/themes/white-red-light/bB.png';
 const bK = '../img/themes/white-red-light/bK.png';
 const bQ = '../img/themes/white-red-light/bQ.png';
 const bP = '../img/themes/white-red-light/bP.png';
+const pieceStyle = 'width:92%;height:92%;';
 
-const size = 8;
 function rowToSign(row) {
     return 8 - row;
 }
@@ -38,7 +39,7 @@ function colToSign(col) {
 }
 
 function chessboard(id, width, state='empty') {
-    let boardWidth = Math.floor((width - 4)/ 8) * 8;
+    let boardWidth = Math.floor(width/ 8) * 8;
     let userBoard = document.getElementById(id);
 
     let outerBoard = document.createElement('div');
@@ -87,33 +88,33 @@ function startPosition(id) {
             case 7:
                 img = document.createElement('img');
                 img.src = wR;
-                img.setAttribute('style', 'width:80%;height:80%;')
+                img.setAttribute('style', pieceStyle)
                 square.appendChild(img);
                 break;
             case 1:
             case 6:
                 img = document.createElement('img');
                 img.src = wN;
-                img.setAttribute('style', 'width:80%;height:80%;')
+                img.setAttribute('style', pieceStyle)
                 square.appendChild(img);
                 break;
             case 2:
             case 5:
                 img = document.createElement('img');
                 img.src = wB;
-                img.setAttribute('style', 'width:80%;height:80%;')
+                img.setAttribute('style', pieceStyle)
                 square.appendChild(img);
                 break;
             case 3:
                 img = document.createElement('img');
                 img.src = wQ;
-                img.setAttribute('style', 'width:80%;height:80%;')
+                img.setAttribute('style', pieceStyle)
                 square.appendChild(img);
                 break;
             case 4:
                 img = document.createElement('img');
                 img.src = wK;
-                img.setAttribute('style', 'width:80%;height:80%;')
+                img.setAttribute('style', pieceStyle)
                 square.appendChild(img);
                 break;
         }
@@ -124,7 +125,7 @@ function startPosition(id) {
         let square = row.childNodes[j];
         img = document.createElement('img');
         img.src = wP;
-        img.setAttribute('style', 'width:80%;height:80%;')
+        img.setAttribute('style', pieceStyle)
         square.appendChild(img);
     }
 
@@ -133,7 +134,7 @@ function startPosition(id) {
         let square = row.childNodes[j];
         img = document.createElement('img');
         img.src = bP;
-        img.setAttribute('style', 'width:80%;height:80%;')
+        img.setAttribute('style', pieceStyle)
         square.appendChild(img);
     }
 
@@ -145,33 +146,33 @@ function startPosition(id) {
             case 7:
                 img = document.createElement('img');
                 img.src = bR;
-                img.setAttribute('style', 'width:80%;height:80%;')
+                img.setAttribute('style', pieceStyle)
                 square.appendChild(img);
                 break;
             case 1:
             case 6:
                 img = document.createElement('img');
                 img.src = bN;
-                img.setAttribute('style', 'width:80%;height:80%;')
+                img.setAttribute('style', pieceStyle)
                 square.appendChild(img);
                 break;
             case 2:
             case 5:
                 img = document.createElement('img');
                 img.src = bB;
-                img.setAttribute('style', 'width:80%;height:80%;')
+                img.setAttribute('style', pieceStyle)
                 square.appendChild(img);
                 break;
             case 3:
                 img = document.createElement('img');
                 img.src = bQ;
-                img.setAttribute('style', 'width:80%;height:80%;')
+                img.setAttribute('style', pieceStyle)
                 square.appendChild(img);
                 break;
             case 4:
                 img = document.createElement('img');
                 img.src = bK;
-                img.setAttribute('style', 'width:80%;height:80%;')
+                img.setAttribute('style', pieceStyle)
                 square.appendChild(img);
                 break;
         }
