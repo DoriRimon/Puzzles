@@ -1,83 +1,69 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Webkit</title>
-    <link type="text/css" rel="stylesheet" href="/src/client/css/styles.css">
-    <link type="text/css" rel="stylesheet" href="/src/client/css/chessboard.css">
-
-    <!-- Editor Related -->
-    <link rel="stylesheet" type="text/css" href="/node_modules/codemirror/lib/codemirror.css">
-    <link rel="stylesheet" type="text/css" href="/node_modules/codemirror/addon/hint/show-hint.css">
-    <script type="text/javascript" src="/node_modules/codemirror/lib/codemirror.js"></script>
-    <script type="text/javascript" src="/node_modules/codemirror/addon/edit/closebrackets.js"></script>
-    <script type="text/javascript" src="/node_modules/codemirror/addon/edit/matchbrackets.js"></script>
-    <script type="text/javascript" src="/node_modules/codemirror/addon/hint/show-hint.js"></script>
-    <script type="text/javascript" src="/node_modules/codemirror/addon/hint/python-hint.js"></script>
-
-    <!-- Themes -->
-    <link rel="stylesheet" type="text/css" href="/node_modules/codemirror/theme/ambiance.css">
-    <link rel="stylesheet" type="text/css" href="/node_modules/codemirror/theme/solarized.css">
-
-    <!-- Languages Supported -->
-    <script type="text/javascript" src="/node_modules/codemirror/mode/python/python.js"></script>
+    <title>Puzzles</title>
+    <link type='text/css' rel='stylesheet' href='/src/client/css/styles.css'>
   </head>
-  <body class="homepage">
-    <div class="top-section">
-      <div class="top-inner">
-        <!--img id="white-king" src="../img/wK.png" alt="White King"-->
-        <h1>WebAthon</h1>
+  <body class='homepage'>
+    <div class='top-section'>
+      <div class='top-inner'>
+        <!--img id='white-king' src='../img/wK.png' alt='White King'-->
+        <h1>Puzzles</h1>
         <h3>Let the code battles begin</h3>
       </div>
     </div>
-    <nav class="homepage-nav">
-      <div class="nav-inner hover-effect">
-        <a href="leaderboard.html">
-          <span class="piece">♞</span>
+    <nav class='homepage-nav'>
+      <div class='nav-inner hover-effect'>
+        <a href='webkit.html'>
+          <span class='piece'>♟</span>
+           Webkit
+        </a>
+        <a href='leaderboard.html'>
+          <span class='piece'>♞</span>
            Leaderboard
         </a>
-        <a href="documentation.html">
-          <span class="piece">♝</span>
+        <a href='documentation.html'>
+          <span class='piece'>♝</span>
            Documentation
         </a>
-        <a href="guide.html">
-          <span class="piece">♜</span>
+        <a href='guide.html'>
+          <span class='piece'>♜</span>
            Examples
         </a>
       </div>
     </nav>
     <main>
-      <div class="panel" id="left-panel">
-        <!-- Create CodeMirror -->
-        <textarea id="code" class="code-mirror"></textarea>
-        <script type="text/javascript" src="/src/client/js/index.js"></script>
-        <button id="submit" onclick="submit()">
-          Submit
-          <span class="piece">♛</span>
-        </button>
-        
-        <!-- Bots Table -->
-        <!--table class="bots" id="tableBots">
-          <tr>
-            <td></td>
-          </tr>
-        </table-->
-      </div>
-      
-      <div class="panel" id="right-panel">
-        <div id="board">
+      <div class='connect'>
+        <div class='sign signin'>
+          <div class='box'>
+            <h1>Sign In</h1>
+            <textarea class='team' placeholder='Team name'></textarea>
+            <textarea class='password' placeholder='Password'></textarea>
+            <button id='login' onclick='login()'>
+              Login
+            </button>
+          </div>
+        </div>
+        <div class='sign signup'>
+          <div class='box'>
+            <h1>Sign Up</h1>
+            <textarea class='team' placeholder='Team name'></textarea>
+            <textarea class='password' placeholder='Password'></textarea>
+            <button id='sign' onclick='sign()'>
+              Sign
+            </button>
+          </div>
         </div>
       </div>
     </main>
     <footer>
       <p>
         This is an open source project - the code can be found on  
-        <a href="https://github.com/DoriRimon/WebAthon" target="_blank">GitHub</a>
+        <a href='https://github.com/DoriRimon/WebAthon' target='_blank'>GitHub</a>
+      </p>
+      <p>
+        Having a problem? Issues are welcomed on the GitHub page
       </p>
     </footer>
   </body>
-  
-  <script src="../js/chessboard.js" type="text/javascript"></script>
-  <script>
-    chessboard('board', 600, 'start');
-  </script>
 </html>

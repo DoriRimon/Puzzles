@@ -32,7 +32,7 @@ socket.post('/submit', (req, res) => {
 	code = req.body["code"];
 
 	// Save the code
-	UploadCode(group, sender, date, code);
+	uploadCode(group, sender, date, code);
 
 	// Return a response (TCP Protocol)
 	res.json(req.body);
@@ -52,6 +52,30 @@ socket.post('/run', (req, res) => {
 	// Return a response (TCP Protocol)
 	res.json(req.body);
 });
+
+// Commit Login
+socket.post('/login', (req, res) => {
+	team = req.body['team'];
+	password = req.body['password'];
+
+	// Verify account
+	flag = verifyAccount(team, password);
+
+	// Return a response (TCP Protocol)
+	res.json(flag);
+});
+
+// Commit SignUp
+socket.post('/sign', (req, res) => {
+	team = req.body['team'];
+	password = req.body['password'];
+
+	// Create account
+	flag = createAccount(team, password);
+
+	// Return a response (TCP Protocol)
+	res.json();
+});
 	
 socket.listen(port, () => {
 	console.log(`Webkit listening at http://localhost:${port}`);
@@ -64,7 +88,7 @@ fs.readFile("src/client/html/index.html", 'utf8', (err, content) => {
 	}
 	else {
 		try {
-			index_html = AddBots(content, ["Skipper", "Rico"]);
+			index_html = addBots(content, ["Skipper", "Rico"]);
 		}
 		catch (e) {
 			console.log("error when parsing index.html:\n" + e);
@@ -93,8 +117,30 @@ function CloseConnection() {
 	db.close();
 }
 
-function UploadCode(group, sender, date, code) {
-	let uploadObj = {}
+function createAccount(team, password) {
+	let uploadObj = {};
+	uploadObj[team] = {
+		password: password
+	}
+
+	db.collection("teams").insertOne(uploadObj, (err, res) => {
+		if (err)
+			throw err;
+		console.log(`The team ${team} was created`)
+	});
+}
+
+function verifyAccount(team, password) {
+	let t = db.collection('teams').find()[team];
+	if (t.length == 0)
+		return false
+	if (password == t[password])
+		return true;
+	return false;
+}
+
+function uploadCode(group, sender, date, code) {
+	let uploadObj = {};
 	uploadObj[group] = {
 		sender: sender,
 		date: date,
@@ -108,7 +154,7 @@ function UploadCode(group, sender, date, code) {
 	});
 }
 
-function AddBots(html, bots) {
+function addBots(html, bots) {
 	const dom = new HTMLParser.JSDOM(html);
 	const document = dom.window.document;
 
@@ -122,7 +168,7 @@ function AddBots(html, bots) {
 		let playtag = document.createElement("td");
 		let playbutton = document.createElement("button");
 		playbutton.setAttribute("class", "play");
-		playbutton.setAttribute("onclick", `RunAgainst("${botName}")`);
+		playbutton.setAttribute("onclick", `runAgainst("${botName}")`);
 		playbutton.textContent = "Play Against";
 		playtag.appendChild(playbutton);
 
