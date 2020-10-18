@@ -35,7 +35,7 @@ a:hover {
 /*-----|| Hero - Top Section ||-----*/
 
 .homepage .top-section {
-	background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('../img/hero-background.jpg');
+	background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('../img/themes/default/hero-background.jpg');
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -51,11 +51,17 @@ a:hover {
 	position: absolute;
 }
 
-.top-inner img {
+.top-section img {
 	display: block;
 	height: 60px;
 	margin: 0 auto;
 	width: 60px;
+	filter: brightness(90%);
+	transition: filter 0.2s ease-out;
+}
+
+.top-section img:hover {
+	filter: brightness(105%);
 }
 
 .top-inner h1 {
@@ -159,6 +165,30 @@ nav {
 	margin-left: 10px;
 }
 
+#bots-button {
+	position: relative;
+	vertical-align: bottom;
+	margin: 10px 10px -20px -6px;
+	width: 50px;
+	height: 50px;
+	background-image: url('../img/menu.png');
+	background-position: center;
+	background-size: cover;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	background-color: transparent;
+	transition: transform 0.2s ease-out;
+}
+
+#bots-button:hover {
+	transform: rotate(90deg);
+}
+
+#bots-button:active {
+	border: none;
+}
+
 #submit {
 	display: flex;
 	font-size: 16px;
@@ -203,6 +233,11 @@ nav {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+.CodeMirror {
+	position: relative;
+	overflow: hidden;
 }
 
 

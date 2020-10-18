@@ -154,10 +154,26 @@ function move(from, to) {
     let t = document.getElementById(to);
     if (f == null || t == null)
         return false;
+    
     let fImages  = f.getElementsByTagName('img');
     if (fImages.length == 0)
         return false;
+
+    // let xT = t.offsetLeft;
+    // let yT = t.offsetTop;
+    // let xF = f.offsetLeft;
+    // let yF = f.offsetTop;
+
     let fImg = fImages[0];
+    // let board = f.parentElement.parentElement;
+    // board.appendChild(fImg);
+
+    // fImg.style.left = xF + 'px';
+    // fImg.style.top = yF + 'px';
+
+    // fImg.style.left = xT + 'px';
+    // fImg.style.top = yT + 'px';
+
     let tImages = t.getElementsByTagName('img');
     if (tImages.length > 0) {
         let tImg = tImages[0];

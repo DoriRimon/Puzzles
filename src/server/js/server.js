@@ -8,11 +8,11 @@ const JSONParser = require("body-parser").json();
 const mongoClient = require('mongodb').MongoClient;
 const MONGO_URL = "mongodb://localhost:27017/";
 
-import getCode from "./codes.js";
-import run from "./run.js";
+// import getCode from "./codes.js";
+// import run from "./run.js";
 
 let db;
-let index_html = "";
+let index_html;
 
 ConnectMongo();
 
@@ -67,6 +67,7 @@ socket.post('/login', (req, res) => {
 
 // Commit SignUp
 socket.post('/sign', (req, res) => {
+	console.log('in sign')
 	team = req.body['team'];
 	password = req.body['password'];
 
@@ -81,21 +82,21 @@ socket.listen(port, () => {
 	console.log(`Webkit listening at http://localhost:${port}`);
 });
 
-fs.readFile("src/client/html/index.html", 'utf8', (err, content) => {
-	if (err) {
-		console.log("error when reading index.html:\n" + err);
-		process.exit(1);
-	}
-	else {
-		try {
-			index_html = addBots(content, ["Skipper", "Rico"]);
-		}
-		catch (e) {
-			console.log("error when parsing index.html:\n" + e);
-			process.exit(1);
-		}
-	}
-});
+// fs.readFile("src/client/html/index.html", 'utf8', (err, content) => {
+// 	if (err) {
+// 		console.log("error when reading index.html:\n" + err);
+// 		process.exit(1);
+// 	}
+// 	else {
+// 		try {
+// 			index_html = content;
+// 		}
+// 		catch (e) {
+// 			console.log("error when parsing index.html:\n" + e);
+// 			process.exit(1);
+// 		}
+// 	}
+// });
 
 
 function ConnectMongo() {
@@ -105,11 +106,13 @@ function ConnectMongo() {
 		console.log("Database Connected!");
 		db = database.db("mydb");
 
-		db.createCollection("codes", function(err, res) {
-			if (err)
-				throw err;
-			console.log("Collection created");
-		});
+		if (!db.collection("codes")) {
+			db.createCollection("codes", function(err, res) {
+				if (err)
+					throw err;
+				console.log("Collection created");
+			});
+		}
 	});
 }
 
@@ -140,6 +143,7 @@ function verifyAccount(team, password) {
 }
 
 function uploadCode(group, sender, date, code) {
+	console.log('in uploadCode')
 	let uploadObj = {};
 	uploadObj[group] = {
 		sender: sender,
@@ -152,33 +156,4 @@ function uploadCode(group, sender, date, code) {
 			throw err;
 		console.log(`Inserted Code From ${sender}\n\n`);
 	});
-}
-
-function addBots(html, bots) {
-	const dom = new HTMLParser.JSDOM(html);
-	const document = dom.window.document;
-
-	bots.forEach(botName => {
-		let tr = document.createElement("tr");
-		
-		let nametag = document.createElement("td");
-		let nametext = document.createTextNode(botName);
-		nametag.appendChild(nametext);
-
-		let playtag = document.createElement("td");
-		let playbutton = document.createElement("button");
-		playbutton.setAttribute("class", "play");
-		playbutton.setAttribute("onclick", `runAgainst("${botName}")`);
-		playbutton.textContent = "Play Against";
-		playtag.appendChild(playbutton);
-
-		tr.appendChild(nametag);
-		tr.appendChild(playtag);
-
-		let table = document.getElementById("tableBots");
-		table.appendChild(tr);
-	});
-
-	html = document.documentElement.innerHTML;
-	return html;
 }

@@ -36,7 +36,7 @@
                 <span class='piece'>♝</span>
                  Documentation
               </a>
-              <a href='guide.html'>
+              <a href='examples.html'>
                 <span class='piece'>♜</span>
                  Examples
               </a>
@@ -45,9 +45,9 @@
     </div>
     <main>
       <div class='panel' id='left-panel'>
+        <button id='bots-button' onclick='botsMenu()'></button>
         <!-- Create CodeMirror -->
         <textarea id='code' class='code-mirror'></textarea>
-        <script type='text/javascript' src='/src/client/js/index.js'></script>
         <button id='submit' onclick='submit()'>
           Submit
           <span class='piece'>♛</span>
@@ -71,9 +71,12 @@
         This is an open source project - the code can be found on  
         <a href='https://github.com/DoriRimon/WebAthon' target='_blank'>GitHub</a>
       </p>
+      <p>
+        Having a problem? Issues are welcomed on the GitHub page
+      </p>
     </footer>
   </body>
-  
+  <script type='text/javascript' src='/src/client/js/webkit.js'></script>
   <script src='../js/chessboard.js' type='text/javascript'></script>
   <script>
     chessboard('board', 600, 'start');
