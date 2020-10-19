@@ -1,15 +1,15 @@
 const express = require('express');
 const socket = express();
 const port = 3000;
-const HTMLParser = require("jsdom");
+const HTMLParser = require('jsdom');
 const fs = require('fs');
-const path = require("path");
-const JSONParser = require("body-parser").json();
+const path = require('path');
+const JSONParser = require('body-parser').json();
 const mongoClient = require('mongodb').MongoClient;
-const MONGO_URL = "mongodb://localhost:27017/";
+const MONGO_URL = 'mongodb://localhost:27017/';
 
-// import getCode from "./codes.js";
-// import run from "./run.js";
+// import getCode from './codes.js';
+// import run from './run.js';
 
 let db;
 let index_html;
@@ -26,10 +26,10 @@ socket.get('/', (req, res) => {
 
 // Submit code (Save it)
 socket.post('/submit', (req, res) => {
-	group = req.body["group"];
-	sender = req.body["sender"];
-	date = req.body["date"];
-	code = req.body["code"];
+	group = req.body['group'];
+	sender = req.body['sender'];
+	date = req.body['date'];
+	code = req.body['code'];
 
 	// Save the code
 	uploadCode(group, sender, date, code);
@@ -40,8 +40,8 @@ socket.post('/submit', (req, res) => {
 
 // Run Code vs Bot
 socket.post('/run', (req, res) => {
-	code = req.body["code"];
-	botName = req.body["botName"];
+	code = req.body['code'];
+	botName = req.body['botName'];
 
 	botCode = getCode(botName);
 
@@ -82,9 +82,9 @@ socket.listen(port, () => {
 	console.log(`Webkit listening at http://localhost:${port}`);
 });
 
-// fs.readFile("src/client/html/index.html", 'utf8', (err, content) => {
+// fs.readFile('src/client/html/index.html', 'utf8', (err, content) => {
 // 	if (err) {
-// 		console.log("error when reading index.html:\n" + err);
+// 		console.log('error when reading index.html:\n' + err);
 // 		process.exit(1);
 // 	}
 // 	else {
@@ -92,7 +92,7 @@ socket.listen(port, () => {
 // 			index_html = content;
 // 		}
 // 		catch (e) {
-// 			console.log("error when parsing index.html:\n" + e);
+// 			console.log('error when parsing index.html:\n' + e);
 // 			process.exit(1);
 // 		}
 // 	}
@@ -103,14 +103,14 @@ function ConnectMongo() {
 	mongoClient.connect(MONGO_URL, { useUnifiedTopology: true }, function(err, database) {
 		if (err)
 			throw err;
-		console.log("Database Connected!");
-		db = database.db("mydb");
+		console.log('Database Connected!');
+		db = database.db('mydb');
 
-		if (!db.collection("codes")) {
-			db.createCollection("codes", function(err, res) {
+		if (!db.collection('codes')) {
+			db.createCollection('codes', function(err, res) {
 				if (err)
 					throw err;
-				console.log("Collection created");
+				console.log('Collection created');
 			});
 		}
 	});
@@ -126,7 +126,7 @@ function createAccount(team, password) {
 		password: password
 	}
 
-	db.collection("teams").insertOne(uploadObj, (err, res) => {
+	db.collection('teams').insertOne(uploadObj, (err, res) => {
 		if (err)
 			throw err;
 		console.log(`The team ${team} was created`)
@@ -151,7 +151,7 @@ function uploadCode(group, sender, date, code) {
 		code: code
 	}
 
-	db.collection("codes").insertOne(uploadObj, (err, res) => {
+	db.collection('codes').insertOne(uploadObj, (err, res) => {
 		if (err)
 			throw err;
 		console.log(`Inserted Code From ${sender}\n\n`);

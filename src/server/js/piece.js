@@ -3,9 +3,9 @@ import {colors, pieces} from '../../shared/constants.js'
 class Piece {
     constructor(pos, color, id) {
         if (new.target == Piece)
-            throw new TypeError("Cannot construct abstract class");
+            throw new TypeError('Cannot construct abstract class');
         if (this.canMove(board, sqaure) == undefined)
-            throw new TypeError("Must implement canMove method");
+            throw new TypeError('Must implement canMove method');
         this.pos = pos;
         this.color = color
         this.points;

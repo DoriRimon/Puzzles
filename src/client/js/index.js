@@ -21,7 +21,7 @@ function login() {
         })
     }).then(result => {
         // do something with the result
-        console.log("commiTed login with result:", result);
+        console.log('commiTed login with result:', result);
     });
 }
 
@@ -48,6 +48,6 @@ function sign() {
         })
     }).then(result => {
         // do something with the result
-        console.log("commiTed signup with result:", result);
+        console.log('commiTed signup with result:', result);
     });
 }

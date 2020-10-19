@@ -1,4 +1,4 @@
-const bots = ['Skipper', 'Kowalski', 'Rico', 'Private'];
+const bots = ['Private', 'Rico', 'Skipper', 'Kowalski'];
 const config = {
     lineNumbers: true,
     mode: 'text/x-python',
