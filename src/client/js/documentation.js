@@ -1,19 +1,26 @@
+// todo - create properties part as well
+
 const methods = [{
     name: 'move', 
-    arguments: 's1, s2',
-    argumentsDesc: 's1 - current square, s2 - target square',
-    desc: 'This is the main move function'
+    args: 's1, s2',
+    argsDesc: 's1 - current square, s2 - target square',
+    desc: 'moves pieces from s1 to s2'
+},
+{
+    name: 'canMove', 
+    args: 's',
+    argsDesc: 's - target square',
+    desc: 'returns true iff piece can move to square s'
 }];
 
 // todo - create method object
 // *todo - methods should be an argument
-function createMethods(methods) {  
-    teams.sort(teamsComparator);
+function createMethods() {  
     let nav = document.getElementsByClassName('top-section')[0];
-    let leaderboard =  document.getElementById('leaderboard');
+    let methodsDiv =  document.getElementById('methods-div');
 
     let table = document.createElement('table');
-    table.id = 'leaderboard';
+    table.id = 'methods';
 
     let tableStyle = `
         width: 100%;
@@ -31,10 +38,12 @@ function createMethods(methods) {
     let h3 = document.createElement('th');
 
 
-    h1.setAttribute('style', 'width: 6%;');
-    let h1Text = document.createTextNode(''); // maybe put #
-    let h2Text = document.createTextNode('Team');
-    let h3Text = document.createTextNode('Score');
+    h1.setAttribute('style', 'width: 15%;');
+    h2.setAttribute('style', 'width: 40%;');
+
+    let h1Text = document.createTextNode('Method'); // maybe put #
+    let h2Text = document.createTextNode('Arguments');
+    let h3Text = document.createTextNode('Description');
     h1.appendChild(h1Text);
     h2.appendChild(h2Text);
     h3.appendChild(h3Text);
@@ -44,30 +53,30 @@ function createMethods(methods) {
     r.appendChild(h3);
     table.appendChild(r);
 
-    for (let i = 0; i < teams.length; i++) {
-        let team = teams[i];
+    for (let i = 0; i < methods.length; i++) {
+        let method = methods[i];
         let tr = document.createElement('tr');
 		
-		let index = document.createElement('td');
-		let indexText = document.createTextNode(i + 1);
-		index.appendChild(indexText);
-
 		let name = document.createElement('td');
-		let nameText = document.createTextNode(team.name);
-        name.appendChild(nameText);
+		let nameText = document.createTextNode(method.name);
+		name.appendChild(nameText);
 
-        let score = document.createElement('td');
-		let scoreText = document.createTextNode(team.score);
-        score.appendChild(scoreText);
+		let args = document.createElement('td');
+		let argsText = document.createTextNode(`${method.args}: ${method.argsDesc}`);
+        args.appendChild(argsText);
 
-        tr.appendChild(index);
-		tr.appendChild(name);
-		tr.appendChild(score);
+        let desc = document.createElement('td');
+		let descText = document.createTextNode(method.desc);
+        desc.appendChild(descText);
+
+        tr.appendChild(name);
+		tr.appendChild(args);
+		tr.appendChild(desc);
 
 		table.appendChild(tr);
     }
 
-    leaderboard.appendChild(table);
+    methodsDiv.appendChild(table);
 }
 
-createLeaderboard()
+createMethods()

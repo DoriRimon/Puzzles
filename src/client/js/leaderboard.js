@@ -69,7 +69,7 @@ function teamsComparator(x, y) {
 function createLeaderboard() {  
     teams.sort(teamsComparator);
     let nav = document.getElementsByClassName('top-section')[0];
-    let leaderboard =  document.getElementById('leaderboard');
+    let leaderboard =  document.getElementById('leaderboard-div');
 
     let table = document.createElement('table');
     table.id = 'leaderboard';

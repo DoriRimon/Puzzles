@@ -221,6 +221,13 @@ nav {
 	border: solid 2px #ffd;
 }
 
+#methods td, #methods th {
+	padding: 25px;
+	text-align: center;
+	color: #333;
+	border: solid 2px #ffd;
+}
+
 #bots-table td, #bots-table th {
 	padding: 8px;
 	text-align: center;
@@ -229,17 +236,20 @@ nav {
 }
   
 #bots-table tr:nth-child(even),
-#leaderboard tr:nth-child(even) {
+#leaderboard tr:nth-child(even),
+#methods tr:nth-child(even) {
 	background-color: #ebebeb;
 }
 
 #bots-table tr:nth-child(odd),
-#leaderboard tr:nth-child(odd) {
+#leaderboard tr:nth-child(odd),
+#methods tr:nth-child(odd) {
 	background-color: #f8f8f8;
 }
 
 #bots-table tr:hover,
-#leaderboard tr:hover {
+#leaderboard tr:hover,
+#methods tr:hover {
 	background-color: #ddd;
 }
 
@@ -251,7 +261,8 @@ nav {
 	color: #333;
 }
 
-#leaderboard th {
+#leaderboard th,
+#methods th {
 	padding-top: 15px;
 	padding-bottom: 15px;
 	background-color: #fcd8dc;
@@ -325,6 +336,10 @@ nav {
 	justify-content: center;
 }
 
+.documentation main h1 {
+	margin: 15px;
+	font-weight: 500;
+}
 
 /*-----|| Connect ||-----*/
 
