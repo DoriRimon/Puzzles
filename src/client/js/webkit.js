@@ -79,6 +79,7 @@ function addBots() {
     let m = document.getElementById('bots-menu');
     let button = document.getElementById('bots-button');
     let style = button.style;
+    // todo - make it so second press on the button closes menu (while button spins back to place)
     // if (m != null) {
     //     if (m.style['visibility'] == '') {
     //         console.log(m.style['opacity'])
@@ -95,11 +96,15 @@ function addBots() {
     let nav = document.getElementsByClassName('top-section')[0];
     let code = document.getElementsByClassName('CodeMirror')[0];
 
+    let height;
+
+    // todo - create inner div to prevent weird appearance of scroll bar when not needed
     let menuStyle = `
-        width: ${(code.offsetWidth + 1)}px;
-        height: fit-content;
+        width: ${(code.offsetWidth + 10)}px;
+        max-height: ${code.offsetHeight + button.offsetHeight + 14}px;
         float: left;
-        /* overflow: scroll; */
+        overflow-y: auto;
+        overflow-x: hidden;
         background-color: #fff;
         position: absolute;
         left: 0;
@@ -114,6 +119,7 @@ function addBots() {
     let tableStyle = `
         table-layout: fixed;
         width: 100%;
+        height: 100%;
         border-collapse: collapse;
         margin-left: 10px;
         margin-top: ${button.offsetHeight + 10 + 4}px;
@@ -175,4 +181,3 @@ function addBots() {
     let leftPanel = document.getElementById('left-panel');
     leftPanel.appendChild(menu);
 }
-

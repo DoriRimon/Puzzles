@@ -21,7 +21,8 @@ body {
 	height: 100%;
 }
 
-body .webkit {
+body .webkit, 
+body .leaderboard {
 	background-color: #fff;
 	display: flex;
 	flex-direction: column;
@@ -83,14 +84,14 @@ a:hover {
 
 /*-----|| Navigation ||-----*/
 
-.webkit .top-section {
+.top-section {
 	display: flex;
 	flex-direction: row;
 	border-bottom: 1px solid #efefef;
 	background-color: #333;
 }
 
-.webkit .top-section img {
+.top-section img {
 	flex: 1;
 	width: 50px;
 	height: 47px;
@@ -124,7 +125,8 @@ nav {
 	transition: font-size 0.1s ease-out;
 }
 
-.webkit .nav-inner a {
+.webkit .nav-inner a, 
+.leaderboard .nav-inner a {
 	color: #d6d4d4;
 }
 
@@ -210,29 +212,49 @@ nav {
 	transition: opacity 0.2s ease-out;
 }
 
+#leaderboard td, #leaderboard th {
+	padding: 25px;
+	text-align: center;
+	color: #333;
+	border: solid 2px #ffd;
+}
+
 #bots-table td, #bots-table th {
 	padding: 8px;
 	text-align: center;
+	color: #333;
+	border: solid 2px #fff;
 }
   
-#bots-table tr:nth-child(even) {
+#bots-table tr:nth-child(even),
+#leaderboard tr:nth-child(even) {
 	background-color: #ebebeb;
 }
 
-#bots-table tr:nth-child(odd) {
+#bots-table tr:nth-child(odd),
+#leaderboard tr:nth-child(odd) {
 	background-color: #f8f8f8;
 }
 
-#bots-table tr:hover {
+#bots-table tr:hover,
+#leaderboard tr:hover {
 	background-color: #ddd;
 }
 
-#bots-table th {
+#bots-table th{
 	padding-top: 15px;
 	padding-bottom: 15px;
 	background-color: #fcd8dc;
 	font-weight: 500;
-	color: #808080;
+	color: #333;
+}
+
+#leaderboard th {
+	padding-top: 15px;
+	padding-bottom: 15px;
+	background-color: #fcd8dc;
+	font-weight: 500;
+	color: #333;
 }
 
 #submit {
