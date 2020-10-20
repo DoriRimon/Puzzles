@@ -57,12 +57,12 @@ a:hover {
 	height: 60px;
 	margin: 0 auto;
 	width: 60px;
-	filter: brightness(90%);
+	filter: brightness(100%);
 	transition: filter 0.2s ease-out;
 }
 
 .top-section img:hover {
-	filter: brightness(105%);
+	filter: brightness(115%);
 }
 
 .top-inner h1 {
@@ -126,7 +126,9 @@ nav {
 }
 
 .webkit .nav-inner a, 
-.leaderboard .nav-inner a {
+.leaderboard .nav-inner a,
+.documentation .nav-inner a,
+.examples .nav-inner a {
 	color: #d6d4d4;
 }
 

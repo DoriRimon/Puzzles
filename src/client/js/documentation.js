@@ -1,72 +1,13 @@
-const teams = [{
-    name: 'Doraz', 
-    score: 100
-},
-{
-    name: 'Ya', 
-    score: 90
-}, 
-{
-    name: 'Doraz', 
-    score: 100
-},
-{
-    name: 'Ya', 
-    score: 90
-},
-{
-    name: 'Doraz', 
-    score: 100
-},
-{
-    name: 'Ya', 
-    score: 90
-},
-{
-    name: 'Doraz', 
-    score: 100
-},
-{
-    name: 'Ya', 
-    score: 90
-},
-{
-    name: 'Doraz', 
-    score: 100
-},
-{
-    name: 'Ya', 
-    score: 90
-},
-{
-    name: 'Doraz', 
-    score: 100
-},
-{
-    name: 'Ya', 
-    score: 90
-},
-{
-    name: 'Doraz', 
-    score: 100
-},
-{
-    name: 'Ya', 
-    score: 90
+const methods = [{
+    name: 'move', 
+    arguments: 's1, s2',
+    argumentsDesc: 's1 - current square, s2 - target square',
+    desc: 'This is the main move function'
 }];
 
-// Comparator for teams - switched for accending order in table
-function teamsComparator(x, y) {
-    if (x.score < y.score)
-        return 1;
-    if (x.score > y.score)
-        return -1;
-    return 0;
-}
-
-// todo - create team object
-// todo - teams should be an argument
-function createLeaderboard() {  
+// todo - create method object
+// *todo - methods should be an argument
+function createMethods(methods) {  
     teams.sort(teamsComparator);
     let nav = document.getElementsByClassName('top-section')[0];
     let leaderboard =  document.getElementById('leaderboard');
