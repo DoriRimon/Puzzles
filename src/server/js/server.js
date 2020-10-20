@@ -82,21 +82,21 @@ socket.listen(port, () => {
 	console.log(`Webkit listening at http://localhost:${port}`);
 });
 
-// fs.readFile('src/client/html/index.html', 'utf8', (err, content) => {
-// 	if (err) {
-// 		console.log('error when reading index.html:\n' + err);
-// 		process.exit(1);
-// 	}
-// 	else {
-// 		try {
-// 			index_html = content;
-// 		}
-// 		catch (e) {
-// 			console.log('error when parsing index.html:\n' + e);
-// 			process.exit(1);
-// 		}
-// 	}
-// });
+fs.readFile('src/client/html/index.html', 'utf8', (err, content) => {
+	if (err) {
+		console.log('error when reading index.html:\n' + err);
+		process.exit(1);
+	}
+	else {
+		try {
+			index_html = content;
+		}
+		catch (e) {
+			console.log('error when parsing index.html:\n' + e);
+			process.exit(1);
+		}
+	}
+});
 
 
 function ConnectMongo() {
@@ -135,7 +135,7 @@ function createAccount(team, password) {
 
 function verifyAccount(team, password) {
 	let t = db.collection('teams').find()[team];
-	if (t.length == 0)
+	if (!t)
 		return false
 	if (password == t[password])
 		return true;
